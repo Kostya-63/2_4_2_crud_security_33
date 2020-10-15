@@ -1,10 +1,7 @@
 package web.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserService;
@@ -54,6 +51,15 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.add(user);
+        return modelAndView;
+    }
+
+    @GetMapping(value="/delete/{id}")
+    public ModelAndView deleteUser(@PathVariable("id") int id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        User user = userService.getById(id);
+        userService.delete(user);
         return modelAndView;
     }
 }

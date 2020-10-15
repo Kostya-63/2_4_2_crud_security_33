@@ -25,7 +25,6 @@
                 <a href="/delete/${user.id}">delete</a>
             </td>
         </tr>
-
     </c:forEach>
 </table>
 <h2>Add</h2>

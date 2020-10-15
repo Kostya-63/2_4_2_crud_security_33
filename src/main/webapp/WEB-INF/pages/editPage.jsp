@@ -24,9 +24,14 @@
     <input type = "text" name="name" id="name">
     <label for="character">Character</label>
     <input type = "text" name="character" id="character">
-    <label for="iq">Iq</label>
-    <input type = "text" name="iq" id="iq">
-    <input type = "submit" value = "Edit user">
+    <label for="IQ">Iq</label>
+    <input type = "text" name="IQ" id="IQ">
+    <c:if test="${empty user.name}">
+        <input type="submit" value="Add new user">
+    </c:if>
+    <c:if test="${!empty user.name}">
+        <input type="submit" value="Edit user">
+    </c:if>
 </form>
 </body>
 </html>
