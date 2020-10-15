@@ -19,24 +19,28 @@ public class UserDaoImpl implements UserDao{
         vasyan.setName("Vasiliy");
         vasyan.setCharacter("funny but dumb");
         vasyan.setIQ(120);
+        users.put(vasyan.getId(), vasyan);
 
         User lena = new User();
         lena.setId(AUTO_ID.getAndIncrement());
         lena.setName("Elena");
         lena.setCharacter("bitch");
         lena.setIQ(180);
+        users.put(lena.getId(), lena);
 
         User anton = new User();
         anton.setId(AUTO_ID.getAndIncrement());
         anton.setName("Anton");
         anton.setCharacter("good");
         anton.setIQ(200);
+        users.put(anton.getId(), anton);
 
         User natasha = new User();
         natasha.setId(AUTO_ID.getAndIncrement());
         natasha.setName("Natalya");
         natasha.setCharacter("too kind for a bitch");
         natasha.setIQ(170);
+        users.put(natasha.getId(), natasha);
     }
 
     @Override

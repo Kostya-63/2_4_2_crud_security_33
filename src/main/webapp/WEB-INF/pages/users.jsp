@@ -12,6 +12,7 @@
         <th>Name</th>
         <th>Character</th>
         <th>Iq</th>
+        <th>action</th>
     </tr>
     <c:forEach var = "user" items = "${usersList}">
         <tr>
@@ -24,8 +25,11 @@
                 <a href="/delete/${user.id}">delete</a>
             </td>
         </tr>
+
     </c:forEach>
 </table>
 <h2>Add</h2>
+<c:url value="/add" var="add"/>
+<a href="${add}">Add new user</a>
 </body>
 </html>
