@@ -3,7 +3,7 @@ package web.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "crud_users")
 public class User {
 
     @Id
@@ -14,7 +14,7 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "character")
+    @Column(name = "characteristic")
     private String character;
 
     @Column(name = "iq")

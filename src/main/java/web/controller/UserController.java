@@ -38,11 +38,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/edit")
-    public ModelAndView editUser(@ModelAttribute("user") User user) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+    public String editUser(@ModelAttribute("user") User user) {
         userService.edit(user);
-        return modelAndView;
+        return "redirect:/";
     }
 
     @GetMapping(value = "/add")
@@ -53,19 +51,15 @@ public class UserController {
     }
 
     @PostMapping(value = "/add")
-    public ModelAndView addUser(@ModelAttribute("user") User user) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+    public String addUser(@ModelAttribute("user") User user) {
         userService.add(user);
-        return modelAndView;
+        return "redirect:/";
     }
 
     @GetMapping(value="/delete/{id}")
-    public ModelAndView deleteUser(@PathVariable("id") int id) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+    public String deleteUser(@PathVariable("id") int id) {
         User user = userService.getById(id);
         userService.delete(user);
-        return modelAndView;
+        return "redirect:/";
     }
 }
