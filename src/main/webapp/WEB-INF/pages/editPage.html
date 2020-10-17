@@ -1,0 +1,22 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit</title>
+</head>
+
+<body>
+ <form action="#"
+          th:action="@{/edit/{id}(id=${user.id})}"
+          th:object="${user}"
+       th:modelAttribute="user"
+          method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="${user.name}" id="name" required>
+    <label for="character">Character</label>
+    <input type="text" th:field="${user.character}" id="character" required>
+    <label for="IQ">Iq</label>
+    <input type="text" th:field="${user.IQ}" id="IQ" required>
+    <input type="submit" value="Edit">
+</form>
+</body>
+</html>

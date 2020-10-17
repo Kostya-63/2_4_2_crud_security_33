@@ -2,8 +2,8 @@ package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserService;
 
@@ -20,34 +20,28 @@ public class UserController {
     }
 
     @GetMapping(value = "/")
-    public ModelAndView users() {
+    public String users(ModelMap model) {
         List<User> users = userService.allUsers();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("users");
-        modelAndView.addObject("usersList", users);
-        return modelAndView;
+        model.addAttribute("usersList", users);
+        return "users";
     }
 
     @GetMapping(value = "/edit/{id}")
-    public ModelAndView editPage(@PathVariable("id") int id) {
+    public String editPage(@PathVariable("id") int id, ModelMap model) {
         User user = userService.getById(id);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("editPage");
-        modelAndView.addObject("user", user);
-        return modelAndView;
+        model.addAttribute("user", user);
+        return "editPage";
     }
 
-    @PostMapping(value = "/edit")
-    public String editUser(@ModelAttribute("user") User user) {
+    @PostMapping(value = "/edit/{id}")
+    public String editUser(@ModelAttribute User user) {
         userService.edit(user);
         return "redirect:/";
     }
 
     @GetMapping(value = "/add")
-    public ModelAndView addPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("editPage");
-        return modelAndView;
+    public String addPage() {
+        return "addPage";
     }
 
     @PostMapping(value = "/add")

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Users</title>
 </head>
 <body>
 <h2>Users</h2>
@@ -16,19 +15,15 @@
         <th>action</th>
     </tr>
     <tr th:each="User : ${usersList}">
-            <td th:utext="${User.id}">Id</td>
-            <td th:utext="${User.name}">Name</td>
-            <td th:utext="${User.character}">Character</td>
-            <td th:utext="${User.IQ}">IQ</td>
-            <td>
-                <a href="/edit/${User.id}">edit </a>
-                <a href="/delete/${User.id}">delete</a>
-            </td>
-        </tr>
-    </trach>
+        <td th:utext="${User.id}">Id</td>
+        <td th:utext="${User.name}">Name</td>
+        <td th:utext="${User.character}">Character</td>
+        <td th:utext="${User.IQ}">IQ</td>
+        <td><a th:href="@{/edit/{id}(id=${User.id})}">Edit</a></td>
+        <td><a th:href="@{/delete/{id}(id=${User.id})}">Delete</a></td>
+    </tr>
 </table>
 <h2>Add</h2>
-<th:url value="/add" var="add"/>
-<a th href="${add}">Add new user</a>
+<a href="/add">Add new user</a>
 </body>
 </html>
