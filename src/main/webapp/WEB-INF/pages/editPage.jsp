@@ -21,11 +21,11 @@
         <input type="hidden" name="id" value="${user.id}">
     </c:if>
     <label for="name">Name</label>
-    <input type = "text" name="name" id="name">
+    <input type = "text" name="name" id="name" value="${user.name}" required>
     <label for="character">Character</label>
-    <input type = "text" name="character" id="character">
+    <input type = "text" name="character" id="character" value="${user.character}" required>
     <label for="IQ">Iq</label>
-    <input type = "text" name="IQ" id="IQ">
+    <input type = "text" name="IQ" id="IQ" value="${user.IQ}" required>
     <c:if test="${empty user.name}">
         <input type="submit" value="Add new user">
     </c:if>
