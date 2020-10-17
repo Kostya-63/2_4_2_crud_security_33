@@ -40,12 +40,13 @@ public class UserController {
     }
 
     @GetMapping(value = "/add")
-    public String addPage() {
+    public String addPage(User user, ModelMap model) {
+        model.addAttribute("user", user);
         return "addPage";
     }
 
     @PostMapping(value = "/add")
-    public String addUser(@ModelAttribute("user") User user) {
+    public String addUser(@ModelAttribute User user) {
         userService.add(user);
         return "redirect:/";
     }

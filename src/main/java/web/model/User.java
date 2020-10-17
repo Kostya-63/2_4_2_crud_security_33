@@ -60,7 +60,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", character='" + character + '\'' +
+                ", characteristic='" + character + '\'' +
                 ", iq=" + iq +
                 '}';
     }
