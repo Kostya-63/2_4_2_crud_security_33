@@ -1,24 +1,20 @@
 package web.dao;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 
-import javax.persistence.TypedQuery;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
 @Transactional
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
 
-    private SessionFactory sessionFactory;
-
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public UserDaoImpl() {
@@ -27,27 +23,29 @@ public class UserDaoImpl implements UserDao{
     @Override
     @SuppressWarnings("unchecked")
     public List<User> allUsers() {
-        TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
-        return query.getResultList();
+        List<User> users = (List<User>) entityManager.createQuery("from User").getResultList();
+        return users;
     }
 
     @Override
     public void add(User user) {
-        sessionFactory.getCurrentSession().save(user);
+        entityManager.persist(user);
     }
 
     @Override
     public void edit(User user) {
-        sessionFactory.getCurrentSession().update(user);
+        entityManager.merge(user);
     }
 
     @Override
     public void delete(User user) {
-        sessionFactory.getCurrentSession().delete(user);
+        int id = user.getId();
+        User delUser = entityManager.find(User.class, id);
+        entityManager.remove(delUser);
     }
 
     @Override
     public User getById(int id) {
-        return sessionFactory.getCurrentSession().get(User.class, id);
+        return entityManager.find(User.class, id);
     }
 }
