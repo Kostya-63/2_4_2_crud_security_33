@@ -34,7 +34,7 @@ public class PersistenceJPAConfig {
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/coreTaskDB?" +
+        dataSource.setUrl("jdbc:mysql://localhost:3306/crud_db_pp?" +
                 "verifyServerCertificate=false&" +
                 "useSSL=false&" +
                 "requireSSL=false&" +
@@ -59,7 +59,7 @@ public class PersistenceJPAConfig {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "update");
+        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         properties.setProperty("hibernate.show_sql", "true");
         return properties;

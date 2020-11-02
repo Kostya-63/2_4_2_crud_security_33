@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<h2>Users</h2>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Character</th>
+        <th>Iq</th>
+        <th>action</th>
+    </tr>
+    <tr th:each="User : ${usersList}">
+        <td th:utext="${User.id}">Id</td>
+        <td th:utext="${User.name}">Name</td>
+        <td th:utext="${User.character}">Character</td>
+        <td th:utext="${User.IQ}">IQ</td>
+        <td><a th:href="@{/editUser/{id}(id=${User.id})}">Edit</a></td>
+        <td><a th:href="@{/deleteUser/{id}(id=${User.id})}">Delete</a></td>
+    </tr>
+</table>
+<a href="/addUser">Add new user</a>
+<br>
+<br>
+<br>
+<br>
+<table border = "1">
+    <tr>
+        <th>Id</th>
+        <th>Role</th>
+        <th>action</th>
+    </tr>
+    <tr th:each="Role : ${rolesList}">
+        <td th:utext="${Role.id}">Id</td>
+        <td th:utext="${Role.role}">Role</td>
+        <td><a th:href="@{/editRole/{id}(id=${Role.id})}">Edit</a></td>
+        <td><a th:href="@{/deleteRole/{id}(id=${Role.id})}">Delete</a></td>
+    </tr>
+</table>
+<a href="/addRole">Add new role</a>
+</body>
+</html>

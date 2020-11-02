@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>2_3_1_crud</artifactId>
+    <artifactId>2_4_2_crud_security2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <packaging>war</packaging>
@@ -15,6 +15,24 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>5.2.8.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.3.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>5.3.5.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.3.5.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -65,7 +83,13 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        
+
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
     </dependencies>
     <build>
         <pluginManagement>
@@ -76,7 +100,7 @@
                     <version>2.4</version>
                     <configuration>
                         <warSourceDirectory>src/main/webapp</warSourceDirectory>
-                        <warName>2_3_1_crud</warName>
+                        <warName>2_4_2_crud_security2</warName>
                         <failOnMissingWebXml>false</failOnMissingWebXml>
                     </configuration>
                 </plugin>
@@ -92,6 +116,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>2_3_1_crud</finalName>
+        <finalName>2_4_2_crud_security2</finalName>
     </build>
 </project>

@@ -1,12 +1,12 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Edit</title>
+    <title>EditUser</title>
 </head>
 
 <body>
 <form action="#"
-      th:action="@{/edit/{id}(id=${user.id})}"
+      th:action="@{/editUser/{id}(id=${user.id})}"
       th:object="${user}"
       th:modelAttribute="user"
       method="post">
