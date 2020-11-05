@@ -7,14 +7,14 @@
 <body>
 <form name="addUser" action="/addUser" method="post">
     <input type="hidden" name="id" th:value="${user.getId()}">
-    <input required type="text" name="name" placeholder="Name" th:value="${user.name}">
-    <input required type="text" name="password" placeholder="Password" th:value="${user.password}">
-    <input required type="text" name="character" placeholder="Character" th:value="${user.character}">
-    <input required type="text" name="IQ" placeholder="iq" th:value="${user.IQ}">
+    <input required type="text" name="name" placeholder="Name" th:value="${user.getName()}">
+    <input required type="text" name="password" placeholder="Password" th:value="${user.getPassword()}">
+    <input required type="text" name="character" placeholder="Character" th:value="${user.getCharacter()}">
+    <input required type="text" name="IQ" placeholder="iq" th:value="${user.getIQ()}">
     <td><select name="rolesAddUser" multiple required placeholder="Role">
         <option disabled>Select roles</option>
         <div th:each="Role : ${rolesList}">
-            <option th:value="${Role.id}" th:text="${Role.role}"/>
+            <option th:value="${Role.getId()}" th:text="${Role.getRole()}"/>
         </div>
     </select>
         <input type="submit" name="button" value="Add"></td>

@@ -5,7 +5,11 @@
 </head>
 
 <body>
-<form name="editRole" action="/editRole" method="post">
+<form action="#"
+      th:action="@{/editRole/{id}(id=${role.id})}"
+      th:object="${role}"
+      th:modelAttribute="role"
+      method="post">
     <label for="role">Role</label>
     <input type="text" th:field="${role.role}" id="role" required>
     <input type="submit" value="Edit">
