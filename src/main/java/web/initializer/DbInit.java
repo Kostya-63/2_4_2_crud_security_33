@@ -7,8 +7,6 @@ import web.service.RoleService;
 import web.service.UserService;
 
 import javax.annotation.PostConstruct;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 
 @Component
@@ -23,16 +21,16 @@ public class DbInit {
 
     @PostConstruct
     void postConstruct() {
-        Role roleAdmin = new Role(1,"ROLE_ADMIN");
-        Role roleUser = new Role(2,"ROLE_USER");
+        Role roleAdmin = new Role("ROLE_ADMIN");
+        Role roleUser = new Role("ROLE_USER");
+        Role roleSuperAdmin = new Role( "ROLE_SUPER_ADMIN");
         roleService.add(roleAdmin);
         roleService.add(roleUser);
+        roleService.add(roleSuperAdmin);
 
-        User admin = new User(1,"admin", "normal", 190, "admin",
-                new HashSet<>(Arrays.asList(roleAdmin, roleUser)));
-        User user = new User(2,"user", "normal", 150, "user",
-                new HashSet<>(Collections.singletonList(roleUser)));
+        User admin = new User("admin", "normal", 190, "admin", new HashSet<>());
+        admin.setRoles(roleAdmin);
+        admin.setName("admin");
         userService.add(admin);
-        userService.add(user);
     }
 }

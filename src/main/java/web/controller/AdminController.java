@@ -34,23 +34,33 @@ public class AdminController {
     public String editUser(@PathVariable("id") int id, ModelMap model) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
+        List<Role> roles = roleService.allRoles();
+        model.addAttribute("rolesList", roles);
         return "editUser";
     }
 
-    @PostMapping(value = "/editUser/{id}")
-    public String editUser(@ModelAttribute User user) {
+    @PostMapping(value = "/editUser")
+    public String editUser(@RequestParam("rolesUpdateUser") Long[] roleIds, @ModelAttribute("updateUser") User user) {
+        for (Long roleId : roleIds) {
+            user.setRoles(roleService.getById(roleId.intValue()));
+        }
         userService.edit(user);
         return "redirect:/";
     }
 
     @GetMapping(value = "/addUser")
     public String addUser(User user, ModelMap model) {
+        List<Role> roles = roleService.allRoles();
+        model.addAttribute("rolesList", roles);
         model.addAttribute("user", user);
         return "addUser";
     }
 
     @PostMapping(value = "/addUser")
-    public String addUser(@ModelAttribute User user) {
+    public String addUser(@RequestParam("rolesAddUser") Long[] roleIds, @ModelAttribute("addUser") User user) {
+        for (Long roleId : roleIds) {
+            user.setRoles(roleService.getById(roleId.intValue()));
+        }
         userService.add(user);
         return "redirect:/";
     }
@@ -69,8 +79,8 @@ public class AdminController {
         return "editRole";
     }
 
-    @PostMapping(value = "/editRole/{id}")
-    public String ediRole(@ModelAttribute Role role) {
+    @PostMapping(value = "/editRole")
+    public String ediRole(@ModelAttribute("editRole") Role role) {
         roleService.edit(role);
         return "redirect:/";
     }
@@ -82,7 +92,7 @@ public class AdminController {
     }
 
     @PostMapping(value = "/addRole")
-    public String addRole(@ModelAttribute Role role) {
+    public String addRole(@ModelAttribute("addRole") Role role) {
         roleService.add(role);
         return "redirect:/";
     }

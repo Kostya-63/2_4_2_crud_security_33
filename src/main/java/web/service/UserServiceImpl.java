@@ -18,12 +18,7 @@ public class UserServiceImpl implements UserService {
         this.dao = dao;
     }
 
-    @Autowired
-    public UserServiceImpl() {
-    }
-
     @Override
-    @Transactional
     public List<User> allUsers() {
         return dao.allUsers();
     }

@@ -5,18 +5,19 @@
 </head>
 
 <body>
-<form action="#"
-      th:action="@{/editUser/{id}(id=${user.id})}"
-      th:object="${user}"
-      th:modelAttribute="user"
-      method="post">
-    <label for="name">Name</label>
-    <input type="text" th:field="${user.name}" id="name" required>
-    <label for="character">Character</label>
-    <input type="text" th:field="${user.character}" id="character" required>
-    <label for="IQ">Iq</label>
-    <input type="text" th:field="${user.IQ}" id="IQ" required>
-    <input type="submit" value="Edit">
+<form name="updateUser" action="/editUser" method="post">
+    <input type="hidden" name="id" th:value="${user.getId()}">
+    <input required type="text" name="name" placeholder="Name" th:value="${user.name}">
+    <input required type="text" name="password" placeholder="Password" th:value="${user.password}">
+    <input required type="text" name="character" placeholder="Character" th:value="${user.character}">
+    <input required type="text" name="IQ" placeholder="iq" th:value="${user.IQ}">
+    <td><select name="rolesUpdateUser" multiple required placeholder="Role">
+        <option disabled>Select roles</option>
+        <div th:each="Role : ${rolesList}">
+            <option th:value="${Role.id}" th:text="${Role.role}"/>
+        </div>
+    </select>
+        <input type="submit" name="button" value="Update"></td>
 </form>
 </body>
 </html>

@@ -4,8 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users_security")
@@ -13,7 +13,7 @@ public class User implements UserDetails {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     @Column(name = "name")
@@ -32,13 +32,21 @@ public class User implements UserDetails {
     private String confirmPassword;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
 
     public User(int id, String name, String character, int iq, String password, Set<Role> roles) {
         this.id = id;
+        this.name = name;
+        this.character = character;
+        this.iq = iq;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public User(String name, String character, int iq, String password, Set<Role> roles) {
         this.name = name;
         this.character = character;
         this.iq = iq;
@@ -90,12 +98,15 @@ public class User implements UserDetails {
         this.confirmPassword = confirmPassword;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public String getRoles() {
+        return roles
+                .stream()
+                .map(Role::getRole)
+                .collect(Collectors.joining(", "));
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRoles(Role role) {
+        roles.add(role);
     }
 
     @Override

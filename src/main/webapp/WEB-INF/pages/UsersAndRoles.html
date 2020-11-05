@@ -12,6 +12,7 @@
         <th>Name</th>
         <th>Character</th>
         <th>Iq</th>
+        <th>Role</th>
         <th>action</th>
     </tr>
     <tr th:each="User : ${usersList}">
@@ -19,6 +20,7 @@
         <td th:utext="${User.name}">Name</td>
         <td th:utext="${User.character}">Character</td>
         <td th:utext="${User.IQ}">IQ</td>
+        <td th:utext="${User.roles}">Role</td>
         <td><a th:href="@{/editUser/{id}(id=${User.id})}">Edit</a></td>
         <td><a th:href="@{/deleteUser/{id}(id=${User.id})}">Delete</a></td>
     </tr>

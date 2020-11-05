@@ -1,6 +1,5 @@
 package web.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.Role;
@@ -12,12 +11,9 @@ import java.util.List;
 @Repository
 @Transactional
 public class RoleDaoImpl implements RoleDao {
+
     @PersistenceContext
     private EntityManager entityManager;
-
-    @Autowired
-    public RoleDaoImpl() {
-    }
 
     @Override
     @SuppressWarnings("unchecked")
@@ -45,5 +41,10 @@ public class RoleDaoImpl implements RoleDao {
     @Override
     public Role getById(int id) {
         return entityManager.find(Role.class, id);
+    }
+
+    @Override
+    public Role getByName(String role) {
+        return entityManager.find(Role.class, role);
     }
 }
