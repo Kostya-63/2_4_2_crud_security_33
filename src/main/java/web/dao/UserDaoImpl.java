@@ -1,5 +1,8 @@
 package web.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
@@ -14,6 +17,9 @@ public class UserDaoImpl implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     @Override
     @SuppressWarnings("unchecked")
     public List<User> allUsers() {
@@ -22,6 +28,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void add(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         entityManager.persist(user);
     }
 
