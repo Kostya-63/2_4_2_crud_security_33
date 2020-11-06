@@ -2,6 +2,7 @@ package web.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import web.security.SecurityConfig;
 
 import javax.servlet.Filter;
 
@@ -9,7 +10,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{PersistenceJPAConfig.class};
+        return new Class[]{PersistenceJPAConfig.class, SecurityConfig.class};
     }
 
     @Override
