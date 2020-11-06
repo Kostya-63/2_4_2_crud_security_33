@@ -29,7 +29,7 @@ public class DbInit {
         roleService.add(roleUser);
 
         User admin = new User("admin", "normal", 190, "admin", new HashSet<>(Arrays.asList(roleAdmin, roleUser)));
-        User user = new User("user", "normal", 180, "123", new HashSet<>(Collections.singleton(roleUser)));
+        User user = new User("user", "normal", 180, "user", new HashSet<>(Collections.singleton(roleUser)));
         userService.add(admin);
         userService.add(user);
     }

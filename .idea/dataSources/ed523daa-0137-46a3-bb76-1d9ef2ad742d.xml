@@ -928,5 +928,83 @@ SELECT|sys.sys_config:null
       <ObjectGrants>SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,RELOAD,SHUTDOWN,PROCESS,FILE,REFERENCES,INDEX,ALTER,SHOW DATABASES,SUPER,CREATE TEMPORARY TABLES,LOCK TABLES,EXECUTE,REPLICATION SLAVE,REPLICATION CLIENT,CREATE VIEW,SHOW VIEW,CREATE ROUTINE,ALTER ROUTINE,CREATE USER,EVENT,TRIGGER,CREATE TABLESPACE,CREATE ROLE,DROP ROLE!
 </ObjectGrants>
     </user>
+    <table id="290" parent="4" name="hibernate_sequence"/>
+    <table id="291" parent="4" name="roles"/>
+    <table id="292" parent="4" name="users_security"/>
+    <table id="293" parent="4" name="users_security_roles"/>
+    <column id="294" parent="290" name="next_val">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+    </column>
+    <column id="295" parent="291" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="296" parent="291" name="role">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <key id="297" parent="291" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="298" parent="292" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="299" parent="292" name="characteristic">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="300" parent="292" name="iq">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="301" parent="292" name="name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="302" parent="292" name="password">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <key id="303" parent="292" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="304" parent="293" name="users_id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="305" parent="293" name="roles_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="306" parent="293" name="FKiebittp85smk1koa9i9ck1euf">
+      <ColNames>roles_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="307" parent="293" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>users_id
+roles_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="308" parent="293" name="FKadk4w1kbao0gc253ct625tccj">
+      <ColNames>users_id</ColNames>
+      <RefTableName>users_security</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="309" parent="293" name="FKiebittp85smk1koa9i9ck1euf">
+      <ColNames>roles_id</ColNames>
+      <RefTableName>roles</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

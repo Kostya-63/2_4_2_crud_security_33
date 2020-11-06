@@ -6,7 +6,7 @@
 
 <body>
 <form action="#"
-      th:action="@{/editRole/{id}(id=${role.id})}"
+      th:action="@{/admin/editRole/{id}(id=${role.id})}"
       th:object="${role}"
       th:modelAttribute="role"
       method="post">
