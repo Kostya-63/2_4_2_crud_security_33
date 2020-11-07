@@ -5,13 +5,21 @@
     <meta charset="UTF-8">
     <title></title>
 </head>
-<body>
-<div>
-    <form method="post" action="/login">
-        <input name="j_username"/>
-        <input name="j_password"/>
-        <input type="submit"/>
-    </form>
-</div>
+<h2>Login</h2>
+<form name="login" action="/login" method="post">
+    <table>
+        <tr>
+            <td>User:</td>
+            <td><input type='text' name='j_username' value=''></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type='password' name='j_password'/></td>
+        </tr>
+        <tr>
+            <td><input name="submit" type="submit" value="submit"/></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

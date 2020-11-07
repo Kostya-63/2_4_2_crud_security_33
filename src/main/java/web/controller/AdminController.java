@@ -22,7 +22,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "/login")
-    public String getLoginPage() {
+    public String login() {
         return "login";
     }
 
