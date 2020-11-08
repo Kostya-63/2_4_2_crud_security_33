@@ -8,6 +8,7 @@ import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -27,7 +28,9 @@ public class AdminController {
     }
 
     @GetMapping(value = "/user")
-    public String getUserPage() {
+    public String getUserPage(ModelMap model, Principal principal) {
+        User user = userService.getUserByName(principal.getName());
+        model.addAttribute("user", user);
         return "user";
     }
 

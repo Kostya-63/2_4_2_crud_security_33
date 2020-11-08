@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Hello user</title>
 </head>
 <body>
-<div>
-    <p>Hello User</p>
-</div>
+<h2>User</h2>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Character</th>
+        <th>Iq</th>
+    </tr>
+    <tr>
+        <td th:utext="${user.name}">Name</td>
+        <td th:utext="${user.character}">Character</td>
+        <td th:utext="${user.IQ}">IQ</td>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+<a th:href="@{/logout}">Logout</a>
 </body>
 </html>
