@@ -1,11 +1,8 @@
 package web.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 
 import javax.persistence.EntityManager;
@@ -51,7 +48,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public UserDetails getUserByName(String name) {
-        return entityManager.find(User.class, name);
+    public User getUserByName(String username) {
+        return (User) entityManager
+                .createQuery("select u from User u where u.name like :username")
+                .setParameter("username", "%" + username.toLowerCase() + "%")
+                .getSingleResult();
     }
 }
