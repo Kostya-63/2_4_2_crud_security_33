@@ -3,8 +3,8 @@ package web.initializer;
 import org.springframework.stereotype.Component;
 import web.model.Role;
 import web.model.User;
-import web.repository.RoleRepository;
-import web.repository.UserRepository;
+import web.service.RoleService;
+import web.service.UserService;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
@@ -13,24 +13,24 @@ import java.util.HashSet;
 
 @Component
 public class DbInit {
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final UserService userService;
+    private final RoleService roleService;
 
-    public DbInit(UserRepository userRepository, RoleRepository roleRepository) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+    public DbInit(UserService userService, RoleService roleService) {
+        this.userService = userService;
+        this.roleService = roleService;
     }
 
     @PostConstruct
     void postConstruct() {
         Role roleAdmin = new Role("ROLE_ADMIN");
         Role roleUser = new Role("ROLE_USER");
-        roleRepository.save(roleAdmin);
-        roleRepository.save(roleUser);
+        roleService.add(roleAdmin);
+        roleService.add(roleUser);
 
         User admin = new User("admin", "normal", 190, "admin", new HashSet<>(Arrays.asList(roleAdmin, roleUser)));
         User user = new User("user", "normal", 180, "user", new HashSet<>(Collections.singleton(roleUser)));
-        userRepository.save(admin);
-        userRepository.save(user);
+        userService.add(admin);
+        userService.add(user);
     }
 }

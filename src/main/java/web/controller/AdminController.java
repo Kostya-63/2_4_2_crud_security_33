@@ -5,8 +5,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.Role;
 import web.model.User;
-import web.repository.RoleRepository;
-import web.repository.UserRepository;
+import web.service.RoleService;
+import web.service.UserService;
 
 import java.security.Principal;
 import java.util.List;
@@ -14,14 +14,13 @@ import java.util.List;
 @Controller
 public class AdminController {
 
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final UserService userService;
+    private final RoleService roleService;
 
-    public AdminController(UserRepository userRepository, RoleRepository roleRepository) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+    public AdminController(UserService userService, RoleService roleService) {
+        this.userService = userService;
+        this.roleService = roleService;
     }
-
 
     @GetMapping(value = "/login")
     public String login() {
@@ -30,25 +29,25 @@ public class AdminController {
 
     @GetMapping(value = "/user")
     public String getUserPage(ModelMap model, Principal principal) {
-        User user = userRepository.getUserByName(principal.getName());
+        User user = userService.getUserByName(principal.getName());
         model.addAttribute("user", user);
         return "user";
     }
 
     @GetMapping(value = "/admin")
     public String Allusers(ModelMap model) {
-        List<User> users = userRepository.findAll();
+        List<User> users = userService.allUsers();
         model.addAttribute("usersList", users);
-        List<Role> roles = roleRepository.findAll();
+        List<Role> roles = roleService.allRoles();
         model.addAttribute("rolesList", roles);
         return "UsersAndRoles";
     }
 
     @GetMapping(value = "/admin/editUser/{id}")
     public String editUser(@PathVariable("id") int id, ModelMap model) {
-        User user = userRepository.getOne(id);
+        User user = userService.getById(id);
         model.addAttribute("user", user);
-        List<Role> roles = roleRepository.findAll();
+        List<Role> roles = roleService.allRoles();
         model.addAttribute("rolesList", roles);
         return "editUser";
     }
@@ -56,15 +55,15 @@ public class AdminController {
     @PostMapping(value = "/admin/editUser")
     public String editUser(@RequestParam("rolesUpdateUser") Long[] roleIds, @ModelAttribute("updateUser") User user) {
         for (Long roleId : roleIds) {
-            user.setRoles(roleRepository.getOne(roleId.intValue()));
+            user.setRoles(roleService.getById(roleId.intValue()));
         }
-        userRepository.save(user);
+        userService.edit(user);
         return "redirect:/admin";
     }
 
     @GetMapping(value = "/admin/addUser")
     public String addUser(User user, ModelMap model) {
-        List<Role> roles = roleRepository.findAll();
+        List<Role> roles = roleService.allRoles();
         model.addAttribute("rolesList", roles);
         model.addAttribute("user", user);
         return "addUser";
@@ -73,29 +72,29 @@ public class AdminController {
     @PostMapping(value = "/admin/addUser")
     public String addUser(@RequestParam("rolesAddUser") Long[] roleIds, @ModelAttribute("addUser") User user) {
         for (Long roleId : roleIds) {
-            user.setRoles(roleRepository.getOne(roleId.intValue()));
+            user.setRoles(roleService.getById(roleId.intValue()));
         }
-        userRepository.save(user);
+        userService.add(user);
         return "redirect:/admin";
     }
 
     @GetMapping(value = "/admin/deleteUser/{id}")
     public String deleteUser(@PathVariable("id") int id) {
-        User user = userRepository.getOne(id);
-        userRepository.delete(user);
+        User user = userService.getById(id);
+        userService.delete(user);
         return "redirect:/admin";
     }
 
     @GetMapping(value = "/admin/editRole/{id}")
     public String editRole(@PathVariable("id") int id, ModelMap model) {
-        Role role = roleRepository.getOne(id);
+        Role role = roleService.getById(id);
         model.addAttribute("role", role);
         return "editRole";
     }
 
     @PostMapping(value = "/admin/editRole/{id}")
     public String ediRole(@ModelAttribute Role role) {
-        roleRepository.save(role);
+        roleService.edit(role);
         return "redirect:/admin";
     }
 
@@ -107,14 +106,14 @@ public class AdminController {
 
     @PostMapping(value = "/admin/addRole")
     public String addRole(@ModelAttribute Role role) {
-        roleRepository.save(role);
+        roleService.add(role);
         return "redirect:/admin";
     }
 
     @GetMapping(value="/admin/deleteRole/{id}")
     public String deleteRole(@PathVariable("id") int id) {
-        Role role = roleRepository.getOne(id);
-        roleRepository.delete(role);
+        Role role = roleService.getById(id);
+        roleService.delete(role);
         return "redirect:/admin";
     }
 }
