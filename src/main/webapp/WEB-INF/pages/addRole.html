@@ -5,9 +5,8 @@
 </head>
 
 <body>
-<form action="#" th:action="@{/admin/addRole}" th:object="${role}" method="post">
-    <label for="role">Role</label>
-    <input type="text" th:field="*{role}" id="role" required>
+<form name="addRole" action="/admin/addRole" method="post">
+    <input required type="text" name="role" placeholder="ROLE_" th:value="${role.getRole()}">
     <input type="submit" value="Add">
 </form>
 <br>

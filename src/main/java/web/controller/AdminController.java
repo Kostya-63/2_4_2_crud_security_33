@@ -92,8 +92,8 @@ public class AdminController {
         return "editRole";
     }
 
-    @PostMapping(value = "/admin/editRole/{id}")
-    public String ediRole(@ModelAttribute Role role) {
+    @PostMapping(value = "/admin/editRole")
+    public String editRole(@ModelAttribute("updateRole") Role role) {
         roleService.edit(role);
         return "redirect:/admin";
     }
@@ -105,7 +105,7 @@ public class AdminController {
     }
 
     @PostMapping(value = "/admin/addRole")
-    public String addRole(@ModelAttribute Role role) {
+    public String addRole(@ModelAttribute("addRole") Role role) {
         roleService.add(role);
         return "redirect:/admin";
     }
