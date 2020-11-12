@@ -22,6 +22,11 @@ public class AdminController {
         this.roleService = roleService;
     }
 
+    @GetMapping(value = "/")
+    public String getHomePage() {
+        return "index";
+    }
+
     @GetMapping(value = "/login")
     public String login() {
         return "login";
