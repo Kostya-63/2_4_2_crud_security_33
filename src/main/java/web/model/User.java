@@ -98,6 +98,10 @@ public class User implements UserDetails {
         this.confirmPassword = confirmPassword;
     }
 
+    public Set<Role> getRolesSet() {
+        return roles;
+    }
+
     public String getRoles() {
         return roles
                 .stream()

@@ -14,7 +14,7 @@
     <td><select name="rolesUpdateUser" multiple required placeholder="Role">
         <option disabled>Select roles</option>
         <div th:each="Role : ${rolesList}">
-            <option th:value="${Role.id}" th:text="${Role.role}"/>
+            <option th:value="${Role.id}" th:text="${Role.role}" th:selected="${user.getRolesSet().contains(Role)}"/>
         </div>
     </select>
         <input type="submit" name="button" value="Update"></td>
