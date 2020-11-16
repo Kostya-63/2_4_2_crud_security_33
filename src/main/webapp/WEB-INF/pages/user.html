@@ -1,27 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Hello user</title>
 </head>
+
 <body>
 <h2>User</h2>
-<table border="1">
-    <tr>
-        <th>Name</th>
-        <th>Character</th>
-        <th>Iq</th>
-    </tr>
-    <tr>
-        <td th:utext="${user.name}">Name</td>
-        <td th:utext="${user.character}">Character</td>
-        <td th:utext="${user.IQ}">IQ</td>
-    </tr>
-</table>
-<br>
-<br>
-<br>
-<br>
-<a th:href="@{/logout}">Logout</a>
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    .flex-fill {
+        flex: 1;
+    }
+</style>
+
+<div class="container-fluid d-flex h-100 flex-column">
+    <nav class="navbar fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Fixed top</a>
+        <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
+    </nav>
+    <div class="row bg-light flex-fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        <div class="col portlet-container portlet-dropzone">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Character</th>
+                    <th>Iq</th>
+                </tr>
+                <tr>
+                    <td th:utext="${user.name}">Name</td>
+                    <td th:utext="${user.character}">Character</td>
+                    <td th:utext="${user.IQ}">IQ</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

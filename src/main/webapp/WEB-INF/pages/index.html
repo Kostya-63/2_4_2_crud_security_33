@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>hello</title>
 </head>
 <body>
-<a href="/login">Войти</a>
+
 <style>
-    html,body{
-        height:100%;
+    html, body {
+        height: 100%;
     }
 
     .flex-fill {
-        flex:1;
+        flex: 1;
     }
 </style>
+
 <div class="container-fluid d-flex h-100 flex-column">
-    <!-- I want this container to stretch to the height of the parent -->
+    <nav class="navbar fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="/login">Войти</a>
+    </nav>
     <div class="row bg-light flex-fill d-flex justify-content-start">
         <!-- I want this row height to filled the remaining height -->
         <div class="col portlet-container portlet-dropzone">
