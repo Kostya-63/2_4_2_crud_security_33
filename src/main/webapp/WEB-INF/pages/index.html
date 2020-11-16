@@ -8,6 +8,25 @@
 </head>
 <body>
 <a href="/login">Войти</a>
+<style>
+    html,body{
+        height:100%;
+    }
+
+    .flex-fill {
+        flex:1;
+    }
+</style>
+<div class="container-fluid d-flex h-100 flex-column">
+    <!-- I want this container to stretch to the height of the parent -->
+    <div class="row bg-light flex-fill d-flex justify-content-start">
+        <!-- I want this row height to filled the remaining height -->
+        <div class="col portlet-container portlet-dropzone">
+            <!-- if row is not the right to stretch the remaining height, this column also fine -->
+            Content
+        </div>
+    </div>
+</div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
