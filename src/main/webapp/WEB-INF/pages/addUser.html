@@ -30,7 +30,7 @@
         <div class="col col-md-2 bg-white portlet-container portlet-dropzone">
             <div class="p-2 d-inline-block"></div>
             <a type="button" class="btn btn-primary btn-lg btn-block" href="/admin">Admin</a>
-            <a type="button" class="btn btn-primary btn-lg btn-block" href="/user">User</a>
+            <a type="button" class="btn btn-primary btn-lg btn-block" href="/userAdmin">User</a>
         </div>
 
         <div class="col col-md-10 portlet-container portlet-dropzone">
@@ -44,33 +44,33 @@
                         <a class="nav-link active" href="/admin/addUser">New user</a>
                     </li>
                 </ul>
-                <div class="card card-block w-100 justify-content-center text-center">
+                <div class="card text-center">
                     <div class="card-header font-weight-bolder text-left">
                         Add new user
                     </div>
-                    <form class="form" name="addUser" action="/admin/addUser" method="post">
+                    <form class="form mx-auto w-25" name="addUser" action="/admin/addUser" method="post">
                         <input type="hidden" name="id" th:value="${user.getId()}">
-                        <div class="form-group w-25">
+                        <div class="form-group">
                             <label class="font-weight-bolder">Name</label>
                             <input required type="text" class="form-control form-control-sm" name="name"
                                    placeholder="Name" th:value="${user.getName()}">
                         </div>
-                        <div class="form-group w-25">
+                        <div class="form-group">
                             <label class="font-weight-bolder">Password</label>
                             <input required type="text" class="form-control form-control-sm" name="password"
                                    placeholder="Password" th:value="${user.getPassword()}">
                         </div>
-                        <div class="form-group w-25">
+                        <div class="form-group">
                             <label class="font-weight-bolder">Character</label>
                             <input required type="text" class="form-control form-control-sm" name="character"
                                    placeholder="Character" th:value="${user.getCharacter()}">
                         </div>
-                        <div class="form-group w-25">
+                        <div class="form-group">
                             <label class="font-weight-bolder">IQ</label>
                             <input required type="text" class="form-control form-control-sm" name="iq"
                                    placeholder="iq" th:value="${user.getIQ()}">
                         </div>
-                        <div class="form-group w-25">
+                        <div class="form-group">
                             <label class="font-weight-bolder">Role</label>
                             <select class="form-control form-control-sm" name="rolesAddUser" multiple required>
                                 <div th:each="Role : ${rolesList}">
@@ -78,7 +78,7 @@
                                 </div>
                             </select>
                         </div>
-                        <div class="form-group w-25">
+                        <div class="form-group">
                             <input class="btn btn-success text-white w-50" type="submit" value="Add new user"/>
                         </div>
                     </form>
