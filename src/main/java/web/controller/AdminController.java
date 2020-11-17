@@ -39,6 +39,13 @@ public class AdminController {
         return "user";
     }
 
+    @GetMapping(value = "/admin/userAdmin")
+    public String getUserAdminPage(ModelMap model, Principal principal) {
+        User user = userService.getUserByName(principal.getName());
+        model.addAttribute("user", user);
+        return "userAdmin";
+    }
+
     @GetMapping(value = "/admin")
     public String Allusers(ModelMap model) {
         List<User> users = userService.allUsers();
