@@ -1,28 +1,106 @@
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>AddUser</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Admin panel</title>
 </head>
 
 <body>
-<form name="addUser" action="/admin/addUser" method="post">
-    <input type="hidden" name="id" th:value="${user.getId()}">
-    <input required type="text" name="name" placeholder="Name" th:value="${user.getName()}">
-    <input required type="text" name="password" placeholder="Password" th:value="${user.getPassword()}">
-    <input required type="text" name="character" placeholder="Character" th:value="${user.getCharacter()}">
-    <input required type="text" name="IQ" placeholder="iq" th:value="${user.getIQ()}">
-    <td><select name="rolesAddUser" multiple required placeholder="Role">
-        <option disabled>Select roles</option>
-        <div th:each="Role : ${rolesList}">
-            <option th:value="${Role.getId()}" th:text="${Role.getRole()}"/>
+<h2>Users</h2>
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    .flex-fill {
+        flex: 1;
+    }
+</style>
+
+<div class="container-fluid d-flex h-100 flex-column">
+    <nav class="navbar fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Fixed top</a>
+        <a class="nav-link text-muted" href="#" th:href="@{/logout}">Logout</a>
+    </nav>
+    <div class="row bg-light flex-fill d-flex justify-content-start">
+        <div class="col col-md-2 bg-white portlet-container portlet-dropzone">
+            <div class="p-2 d-inline-block"></div>
+            <a type="button" class="btn btn-primary btn-lg btn-block" href="/admin">Admin</a>
+            <a type="button" class="btn btn-primary btn-lg btn-block" href="/user">User</a>
         </div>
-    </select>
-        <input type="submit" name="button" value="Add"></td>
-</form>
-<br>
-<br>
-<br>
-<br>
-<a th:href="@{/logout}">Logout</a>
+
+        <div class="col col-md-10 portlet-container portlet-dropzone">
+            <div class="mt-3 d-inline-block" style="width: 100%">
+                <h2 class="text-left">User information page</h2>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">Users tabe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/admin/addUser">New user</a>
+                    </li>
+                </ul>
+                <div class="card">
+                    <div class="card-header font-weight-bolder">
+                        Add new user
+                    </div>
+                    <form class="form" name="addUser" action="/admin/addUser" method="post">
+                        <input type="hidden" name="id" th:value="${user.getId()}">
+                        <div class="form-group w-25">
+                            <label class="font-weight-bolder">Name</label>
+                            <input required type="text" class="form-control form-control-sm" name="name"
+                                   placeholder="Name" th:value="${user.getName()}">
+                        </div>
+                        <div class="form-group w-25">
+                            <label class="font-weight-bolder">Password</label>
+                            <input required type="text" class="form-control form-control-sm" name="password"
+                                   placeholder="Password" th:value="${user.getPassword()}">
+                        </div>
+                        <div class="form-group w-25">
+                            <label class="font-weight-bolder">Character</label>
+                            <input required type="text" class="form-control form-control-sm" name="character"
+                                   placeholder="Character" th:value="${user.getCharacter()}">
+                        </div>
+                        <div class="form-group w-25">
+                            <label class="font-weight-bolder">IQ</label>
+                            <input required type="text" class="form-control form-control-sm" name="iq"
+                                   placeholder="iq" th:value="${user.getIQ()}">
+                        </div>
+                        <div class="form-group w-25">
+                            <label class="font-weight-bolder">Role</label>
+                            <td><select class="form-control form-control-sm" name="rolesAddUser" multiple required>
+                                <div th:each="Role : ${rolesList}">
+                                    <option th:value="${Role.getId()}" th:text="${Role.getRole()}"/>
+                                </div>
+                            </select>
+                        </div>
+                        <div class="form-group w-25">
+                            <input class="btn btn-success text-white w-50" type="submit" value="Add new user"></td>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
+<!--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
+<!--        crossorigin="anonymous"></script>-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>
