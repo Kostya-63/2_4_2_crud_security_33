@@ -1,55 +1,99 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Admin panel</title>
 </head>
+
 <body>
 <h2>Users</h2>
-<table border="1">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Password</th>
-        <th>Character</th>
-        <th>Iq</th>
-        <th>Role</th>
-        <th>action</th>
-    </tr>
-    <tr th:each="User : ${usersList}">
-        <td th:utext="${User.id}">Id</td>
-        <td th:utext="${User.name}">Name</td>
-        <td th:utext="${User.password}">Password</td>
-        <td th:utext="${User.character}">Character</td>
-        <td th:utext="${User.IQ}">IQ</td>
-        <td th:utext="${User.roles}">Role</td>
-        <td><a th:href="@{/admin/editUser/{id}(id=${User.id})}">Edit</a></td>
-        <td><a th:href="@{/admin/deleteUser/{id}(id=${User.id})}">Delete</a></td>
-    </tr>
-</table>
-<a href="/admin/addUser">Add new user</a>
-<br>
-<br>
-<br>
-<br>
-<table border = "1">
-    <tr>
-        <th>Id</th>
-        <th>Role</th>
-        <th>action</th>
-    </tr>
-    <tr th:each="Role : ${rolesList}">
-        <td th:utext="${Role.id}">Id</td>
-        <td th:utext="${Role.role}">Role</td>
-        <td><a th:href="@{/admin/editRole/{id}(id=${Role.id})}">Edit</a></td>
-        <td><a th:href="@{/admin/deleteRole/{id}(id=${Role.id})}">Delete</a></td>
-    </tr>
-</table>
-<a href="/admin/addRole">Add new role</a>
-<br>
-<br>
-<br>
-<br>
-<a th:href="@{/logout}">Logout</a>
+
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    .flex-fill {
+        flex: 1;
+    }
+</style>
+
+<div class="container-fluid d-flex h-100 flex-column">
+    <nav class="navbar fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Fixed top</a>
+        <a class="nav-link text-muted" href="#" th:href="@{/logout}">Logout</a>
+    </nav>
+    <div class="row bg-light flex-fill d-flex justify-content-start">
+        <div class="col col-md-2 bg-white portlet-container portlet-dropzone">
+            <div class="p-2 d-inline-block"></div>
+            <a type="button" class="btn btn-primary btn-lg btn-block" href="/admin">Admin</a>
+            <a type="button" class="btn btn-primary btn-lg btn-block" href="/user">User</a>
+        </div>
+        <div class="col col-md-10 portlet-container portlet-dropzone">
+        <div class="mt-3 d-inline-block" style="width: 100%">
+                <h2 class="text-left">User information page</h2>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/admin">Users tabe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/addUser">New user</a>
+                    </li>
+                </ul>
+                <div class="card">
+                    <div class="card-header font-weight-bolder">
+                        All users
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Password</th>
+                                <th>Character</th>
+                                <th>Iq</th>
+                                <th>Role</th>
+                                <th style="width: 9%">Edit</th>
+                                <th style="width: 9%">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="table-striped" th:each="User : ${usersList}">
+                                <td th:utext="${User.id}">Id</td>
+                                <td th:utext="${User.name}">Name</td>
+                                <td th:utext="${User.password}">Password</td>
+                                <td th:utext="${User.character}">Character</td>
+                                <td th:utext="${User.IQ}">IQ</td>
+                                <td th:utext="${User.roles}">Role</td>
+                                <td style="width: 9%"><a class="btn btn-primary text-white" th:href="@{/admin/editUser/{id}(id=${User.id})}">Edit</a></td>
+                                <td style="width: 9%"><a class="btn btn-danger text-white" th:href="@{/admin/deleteUser/{id}(id=${User.id})}">Delete</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
+<!--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
+<!--        crossorigin="anonymous"></script>-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>
