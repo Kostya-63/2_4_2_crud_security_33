@@ -21,6 +21,98 @@
     }
 </style>
 
+<div id="editUser" th:attrappend="id=${User.id}" class="modal fade" th:each="User : ${usersList}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-header font-weight-bolder text-left">
+                Edit user
+                <button class="close" data-dismiss="modal">x</button>
+            </div>
+            <form class="form mx-auto w-50" name="updateUser" action="/admin/editUser" method="post">
+                <input type="hidden" name="id" th:value="${User.getId()}">
+                <div class="form-group">
+                    <label class="font-weight-bolder">Name</label>
+                    <input required type="text" class="form-control form-control-sm" name="name"
+                           placeholder="Name" th:value="${User.getName()}">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bolder">Password</label>
+                    <input required type="text" class="form-control form-control-sm" name="password"
+                           placeholder="Password" th:value="${User.getPassword()}">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bolder">Character</label>
+                    <input required type="text" class="form-control form-control-sm" name="character"
+                           placeholder="Character" th:value="${User.getCharacter()}">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bolder">IQ</label>
+                    <input required type="text" class="form-control form-control-sm" name="IQ"
+                           placeholder="iq" th:value="${User.getIQ()}">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bolder">Role</label>
+                    <select class="form-control form-control-sm" name="rolesUpdateUser" multiple required>
+                        <div th:each="Role : ${rolesList}">
+                            <option th:value="${Role.id}" th:text="${Role.role}"
+                                    th:selected="${User.getRolesSet().contains(Role)}"/>
+                        </div>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-success text-white w-50" type="submit" value="Edit user"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="deleteUser" th:attrappend="id=${User.id}" class="modal fade" th:each="User : ${usersList}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card-header font-weight-bolder text-left">
+                Delete user
+                <button class="close" data-dismiss="modal">x</button>
+            </div>
+            <form class="form mx-auto w-50" name="deleteUser" action="/admin/deleteUser" method="post">
+                <input type="hidden" name="id" th:value="${User.getId()}">
+                <div class="form-group">
+                    <label class="font-weight-bolder">Name</label>
+                    <input required type="text" class="form-control form-control-sm" name="name"
+                           placeholder="Name" th:value="${User.getName()}">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bolder">Password</label>
+                    <input required type="text" class="form-control form-control-sm" name="password"
+                           placeholder="Password" th:value="${User.getPassword()}">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bolder">Character</label>
+                    <input required type="text" class="form-control form-control-sm" name="character"
+                           placeholder="Character" th:value="${User.getCharacter()}">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bolder">IQ</label>
+                    <input required type="text" class="form-control form-control-sm" name="IQ"
+                           placeholder="iq" th:value="${User.getIQ()}">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bolder">Role</label>
+                    <select class="form-control form-control-sm" name="rolesUpdateUser" multiple required>
+                        <div th:each="Role : ${rolesList}">
+                            <option th:value="${Role.id}" th:text="${Role.role}"
+                                    th:selected="${User.getRolesSet().contains(Role)}"/>
+                        </div>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-success text-white w-50" type="submit" value="Delete user"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid d-flex h-100 flex-column">
     <nav class="navbar fixed-top navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Fixed top</a>
@@ -72,9 +164,14 @@
                                 <td th:utext="${User.IQ}">IQ</td>
                                 <td th:utext="${User.roles}">Role</td>
                                 <td style="width: 9%"><a class="btn btn-primary text-white"
-                                                         th:href="@{/admin/editUser/{id}(id=${User.id})}">Edit</a></td>
+                                                         data-toggle="modal"
+                                                         data-target="#editUser"
+                                                         th:attrappend="data-target=${User.id}">Edit</a>
+                                </td>
                                 <td style="width: 9%"><a class="btn btn-danger text-white"
-                                                         th:href="@{/admin/deleteUser/{id}(id=${User.id})}">Delete</a>
+                                                         data-toggle="modal"
+                                                         data-target="#deleteUser"
+                                                         th:attrappend="data-target=${User.id}">Delete</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -85,6 +182,7 @@
         </div>
     </div>
 </div>
+
 
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
 <!--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->

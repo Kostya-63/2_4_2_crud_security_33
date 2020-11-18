@@ -47,7 +47,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admin")
-    public String Allusers(ModelMap model) {
+    public String Allusers(ModelMap model, Principal principal) {
         List<User> users = userService.allUsers();
         model.addAttribute("usersList", users);
         List<Role> roles = roleService.allRoles();
@@ -92,8 +92,13 @@ public class AdminController {
 
     @GetMapping(value = "/admin/deleteUser/{id}")
     public String deleteUser(@PathVariable("id") int id) {
-        User user = userService.getById(id);
-        userService.delete(user);
+        return "redirect:/admin";
+    }
+
+    @PostMapping(value = "/admin/deleteUser")
+    public String editUser(@ModelAttribute("deleteUser") User user) {
+        User userToDel = userService.getById(user.getId());
+        userService.delete(userToDel);
         return "redirect:/admin";
     }
 
