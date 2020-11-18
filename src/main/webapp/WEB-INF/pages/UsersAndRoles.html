@@ -22,101 +22,102 @@
 </style>
 
 <div id="editUser" th:attrappend="id=${User.id}" class="modal fade" th:each="User : ${usersList}">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="card-header font-weight-bolder text-left">
-                Edit user
-                <button class="close" data-dismiss="modal">x</button>
+    <form class="form" name="updateUser" action="/admin/editUser" method="post">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="card text-center">
+                    <div class="card-header font-weight-bolder text-left bg-white">
+                        Edit user
+                        <button class="close" data-dismiss="modal">x</button>
+                    </div>
+                    <input type="hidden" name="id" th:value="${User.getId()}">
+                    <div class="form-group mx-auto w-50">
+                        <label class="font-weight-bolder">Name</label>
+                        <input required type="text" class="form-control form-control-sm" name="name"
+                               placeholder="Name" th:value="${User.getName()}">
+                    </div>
+                    <div class="form-group mx-auto w-50">
+                        <label class="font-weight-bolder">Password</label>
+                        <input required type="text" class="form-control form-control-sm" name="password"
+                               placeholder="Password" th:value="${User.getPassword()}">
+                    </div>
+                    <div class="form-group mx-auto w-50">
+                        <label class="font-weight-bolder">Character</label>
+                        <input required type="text" class="form-control form-control-sm" name="character"
+                               placeholder="Character" th:value="${User.getCharacter()}">
+                    </div>
+                    <div class="form-group mx-auto w-50">
+                        <label class="font-weight-bolder">IQ</label>
+                        <input required type="text" class="form-control form-control-sm" name="IQ"
+                               placeholder="iq" th:value="${User.getIQ()}">
+                    </div>
+                    <div class="form-group mx-auto w-50">
+                        <label class="font-weight-bolder">Role</label>
+                        <select class="form-control form-control-sm" name="rolesUpdateUser" multiple required>
+                            <div th:each="Role : ${rolesList}">
+                                <option th:value="${Role.id}" th:text="${Role.role}"
+                                        th:selected="${User.getRolesSet().contains(Role)}"></option>
+                            </div>
+                        </select>
+                    </div>
+                    <div class="card-footer text-right bg-white">
+                        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input class="btn btn-primary" type="submit" value="Edit"/>
+                    </div>
+                </div>
             </div>
-            <form class="form mx-auto w-50" name="updateUser" action="/admin/editUser" method="post">
-                <input type="hidden" name="id" th:value="${User.getId()}">
-                <div class="form-group">
-                    <label class="font-weight-bolder">Name</label>
-                    <input required type="text" class="form-control form-control-sm" name="name"
-                           placeholder="Name" th:value="${User.getName()}">
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bolder">Password</label>
-                    <input required type="text" class="form-control form-control-sm" name="password"
-                           placeholder="Password" th:value="${User.getPassword()}">
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bolder">Character</label>
-                    <input required type="text" class="form-control form-control-sm" name="character"
-                           placeholder="Character" th:value="${User.getCharacter()}">
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bolder">IQ</label>
-                    <input required type="text" class="form-control form-control-sm" name="IQ"
-                           placeholder="iq" th:value="${User.getIQ()}">
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bolder">Role</label>
-                    <select class="form-control form-control-sm" name="rolesUpdateUser" multiple required>
-                        <div th:each="Role : ${rolesList}">
-                            <option th:value="${Role.id}" th:text="${Role.role}"
-                                    th:selected="${User.getRolesSet().contains(Role)}"/>
-                        </div>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input class="btn btn-success text-white w-50" type="submit" value="Edit user"/>
-                </div>
-            </form>
         </div>
-    </div>
+    </form>
 </div>
 
 <div id="deleteUser" th:attrappend="id=${User.id}" class="modal fade" th:each="User : ${usersList}">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="card-header font-weight-bolder text-left">
-                Delete user
-                <button class="close" data-dismiss="modal">x</button>
-            </div>
-            <form class="form mx-auto w-50" name="deleteUser" action="/admin/deleteUser" method="post">
-                <input type="hidden" name="id" th:value="${User.getId()}">
-                <div class="form-group">
-                    <label class="font-weight-bolder">Name</label>
-                    <input required type="text" class="form-control form-control-sm" name="name"
-                           placeholder="Name" th:value="${User.getName()}">
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bolder">Password</label>
-                    <input required type="text" class="form-control form-control-sm" name="password"
-                           placeholder="Password" th:value="${User.getPassword()}">
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bolder">Character</label>
-                    <input required type="text" class="form-control form-control-sm" name="character"
-                           placeholder="Character" th:value="${User.getCharacter()}">
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bolder">IQ</label>
-                    <input required type="text" class="form-control form-control-sm" name="IQ"
-                           placeholder="iq" th:value="${User.getIQ()}">
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bolder">Role</label>
-                    <select class="form-control form-control-sm" name="rolesUpdateUser" multiple required>
-                        <div th:each="Role : ${rolesList}">
-                            <option th:value="${Role.id}" th:text="${Role.role}"
-                                    th:selected="${User.getRolesSet().contains(Role)}"/>
+    <form class="form" name="deleteUser" action="/admin/deleteUser" method="post">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="card text-center">
+                    <div class="card-header font-weight-bolder text-left bg-white">
+                        Delete user
+                        <button class="close" data-dismiss="modal">x</button>
+                    </div>
+                        <input type="hidden" name="id" th:value="${User.getId()}">
+                        <div class="form-group mx-auto w-50" >
+                            <label class="font-weight-bolder">Name</label>
+                            <input required type="text" class="form-control form-control-sm" name="name"
+                                   placeholder="Name" th:value="${User.getName()}" readonly>
                         </div>
-                    </select>
+                        <div class="form-group mx-auto w-50">
+                            <label class="font-weight-bolder">Character</label>
+                            <input required type="text" class="form-control form-control-sm" name="character"
+                                   placeholder="Character" th:value="${User.getCharacter()}" readonly>
+                        </div>
+                        <div class="form-group mx-auto w-50">
+                            <label class="font-weight-bolder">IQ</label>
+                            <input required type="text" class="form-control form-control-sm" name="IQ"
+                                   placeholder="iq" th:value="${User.getIQ()}" readonly>
+                        </div>
+                        <div class="form-group mx-auto w-50 text-black-50">
+                            <label class="font-weight-bolder">Role</label>
+                            <select class="form-control form-control-sm bg-light" name="rolesUpdateUser" multiple required>
+                                <div th:each="Role : ${rolesList}">
+                                    <option th:value="${Role.id}" th:text="${Role.role}"
+                                            th:selected="${User.getRolesSet().contains(Role)}" disabled></option>
+                                </div>
+                            </select>
+                        </div>
+                    <div class="card-footer text-right bg-white">
+                        <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input class="btn btn-danger" type="submit" value="Delete"/>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input class="btn btn-success text-white w-50" type="submit" value="Delete user"/>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <div class="container-fluid d-flex h-100 flex-column">
     <nav class="navbar fixed-top navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Fixed top</a>
-        <a class="nav-link text-muted" href="#" th:href="@{/logout}">Logout</a>
+        <a class="nav-link text-white-50" href="#" th:href="@{/logout}">Logout</a>
     </nav>
     <div class="row bg-light flex-fill d-flex justify-content-start">
         <div class="col col-md-2 bg-white portlet-container portlet-dropzone">
@@ -147,7 +148,6 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Password</th>
                                 <th>Character</th>
                                 <th>Iq</th>
                                 <th>Role</th>
@@ -159,7 +159,6 @@
                             <tr class="table-striped" th:each="User : ${usersList}">
                                 <td th:utext="${User.id}">Id</td>
                                 <td th:utext="${User.name}">Name</td>
-                                <td th:utext="${User.password}">Password</td>
                                 <td th:utext="${User.character}">Character</td>
                                 <td th:utext="${User.IQ}">IQ</td>
                                 <td th:utext="${User.roles}">Role</td>
