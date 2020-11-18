@@ -42,23 +42,23 @@
                         About user
                     </div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table-striped w-100">
                             <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Character</th>
-                                <th>Iq</th>
-                                <th>Role</th>
+                                <th class="p-2">Id</th>
+                                <th class="p-2">Name</th>
+                                <th class="p-2">Character</th>
+                                <th class="p-2">Iq</th>
+                                <th class="p-2">Role</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="table-secondary">
-                                <th scope="row">1</th>
-                                <td th:utext="${user.name}">Name</td>
-                                <td th:utext="${user.character}">Character</td>
-                                <td th:utext="${user.IQ}">IQ</td>
-                                <td th:utext="${user.roles}">Role</td>
+                            <tr class="table-striped w-100">
+                                <td class="p-2" th:utext="${User.id}">Id</td>
+                                <td class="p-2" th:utext="${User.name}">Name</td>
+                                <td class="p-2" th:utext="${User.character}">Character</td>
+                                <td class="p-2" th:utext="${User.IQ}">IQ</td>
+                                <td class="p-2" th:utext="${User.roles}">Role</td>
                             </tr>
                             </tbody>
                         </table>

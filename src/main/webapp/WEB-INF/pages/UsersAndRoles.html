@@ -79,31 +79,31 @@
                         Delete user
                         <button class="close" data-dismiss="modal">x</button>
                     </div>
-                        <input type="hidden" name="id" th:value="${User.getId()}">
-                        <div class="form-group mx-auto w-50" >
-                            <label class="font-weight-bolder">Name</label>
-                            <input required type="text" class="form-control form-control-sm" name="name"
-                                   placeholder="Name" th:value="${User.getName()}" readonly>
-                        </div>
-                        <div class="form-group mx-auto w-50">
-                            <label class="font-weight-bolder">Character</label>
-                            <input required type="text" class="form-control form-control-sm" name="character"
-                                   placeholder="Character" th:value="${User.getCharacter()}" readonly>
-                        </div>
-                        <div class="form-group mx-auto w-50">
-                            <label class="font-weight-bolder">IQ</label>
-                            <input required type="text" class="form-control form-control-sm" name="IQ"
-                                   placeholder="iq" th:value="${User.getIQ()}" readonly>
-                        </div>
-                        <div class="form-group mx-auto w-50 text-black-50">
-                            <label class="font-weight-bolder">Role</label>
-                            <select class="form-control form-control-sm bg-light" name="rolesUpdateUser" multiple required>
-                                <div th:each="Role : ${rolesList}">
-                                    <option th:value="${Role.id}" th:text="${Role.role}"
-                                            th:selected="${User.getRolesSet().contains(Role)}" disabled></option>
-                                </div>
-                            </select>
-                        </div>
+                    <input type="hidden" name="id" th:value="${User.getId()}">
+                    <div class="form-group mx-auto w-50">
+                        <label class="font-weight-bolder">Name</label>
+                        <input required type="text" class="form-control form-control-sm" name="name"
+                               placeholder="Name" th:value="${User.getName()}" readonly>
+                    </div>
+                    <div class="form-group mx-auto w-50">
+                        <label class="font-weight-bolder">Character</label>
+                        <input required type="text" class="form-control form-control-sm" name="character"
+                               placeholder="Character" th:value="${User.getCharacter()}" readonly>
+                    </div>
+                    <div class="form-group mx-auto w-50">
+                        <label class="font-weight-bolder">IQ</label>
+                        <input required type="text" class="form-control form-control-sm" name="IQ"
+                               placeholder="iq" th:value="${User.getIQ()}" readonly>
+                    </div>
+                    <div class="form-group mx-auto w-50 text-black-50">
+                        <label class="font-weight-bolder">Role</label>
+                        <select class="form-control form-control-sm bg-light" name="rolesUpdateUser" multiple required>
+                            <div th:each="Role : ${rolesList}">
+                                <option th:value="${Role.id}" th:text="${Role.role}"
+                                        th:selected="${User.getRolesSet().contains(Role)}" disabled></option>
+                            </div>
+                        </select>
+                    </div>
                     <div class="card-footer text-right bg-white">
                         <button class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <input class="btn btn-danger" type="submit" value="Delete"/>
@@ -143,34 +143,34 @@
                         All users
                     </div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table-striped w-100">
                             <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Character</th>
-                                <th>Iq</th>
-                                <th>Role</th>
-                                <th style="width: 9%">Edit</th>
-                                <th style="width: 9%">Delete</th>
+                                <th class="p-2">Id</th>
+                                <th class="p-2">Name</th>
+                                <th class="p-2">Character</th>
+                                <th class="p-2">Iq</th>
+                                <th class="p-2">Role</th>
+                                <th class="p-2" style="width: 9%">Edit</th>
+                                <th class="p-2" style="width: 9%">Delete</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="table-striped" th:each="User : ${usersList}">
-                                <td th:utext="${User.id}">Id</td>
-                                <td th:utext="${User.name}">Name</td>
-                                <td th:utext="${User.character}">Character</td>
-                                <td th:utext="${User.IQ}">IQ</td>
-                                <td th:utext="${User.roles}">Role</td>
-                                <td style="width: 9%"><a class="btn btn-primary text-white"
-                                                         data-toggle="modal"
-                                                         data-target="#editUser"
-                                                         th:attrappend="data-target=${User.id}">Edit</a>
+                            <tr class="table-striped w-100" th:each="User : ${usersList}">
+                                <td class="p-2" th:utext="${User.id}">Id</td>
+                                <td class="p-2" th:utext="${User.name}">Name</td>
+                                <td class="p-2" th:utext="${User.character}">Character</td>
+                                <td class="p-2" th:utext="${User.IQ}">IQ</td>
+                                <td class="p-2" th:utext="${User.roles}">Role</td>
+                                <td class="p-2" style="width: 9%"><a class="btn btn-primary text-white"
+                                                                     data-toggle="modal"
+                                                                     data-target="#editUser"
+                                                                     th:attrappend="data-target=${User.id}">Edit</a>
                                 </td>
-                                <td style="width: 9%"><a class="btn btn-danger text-white"
-                                                         data-toggle="modal"
-                                                         data-target="#deleteUser"
-                                                         th:attrappend="data-target=${User.id}">Delete</a>
+                                <td class="p-2" style="width: 9%"><a class="btn btn-danger text-white"
+                                                                     data-toggle="modal"
+                                                                     data-target="#deleteUser"
+                                                                     th:attrappend="data-target=${User.id}">Delete</a>
                                 </td>
                             </tr>
                             </tbody>
