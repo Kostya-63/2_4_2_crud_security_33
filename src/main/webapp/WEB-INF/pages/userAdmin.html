@@ -9,7 +9,6 @@
 </head>
 
 <body>
-<h2>Admin</h2>
 
 <style>
     html, body {
@@ -22,11 +21,13 @@
 </style>
 
 <div class="container-fluid d-flex h-100 flex-column">
-    <nav class="navbar fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Fixed top</a>
+    <nav class="navbar fixed-top navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="#" th:utext="${user.name}">Fixed top</a>
+        <a class="navbar-brand" href="#">with roles: </a>
+        <a class="navbar-brand" href="#" th:utext="${user.roles}">Fixed top</a>
         <a class="nav-link text-white-50" href="#" th:href="@{/logout}">Logout</a>
     </nav>
-    <div class="row bg-light flex-fill d-flex justify-content-start">
+    <div class="row pt-5 bg-light flex-fill d-flex justify-content-start">
         <div class="col col-md-2 bg-white portlet-container portlet-dropzone">
             <div class="d-inline-block"></div>
             <div class="list-group">

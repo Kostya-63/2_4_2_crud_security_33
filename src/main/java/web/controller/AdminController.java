@@ -48,6 +48,8 @@ public class AdminController {
 
     @GetMapping(value = "/admin")
     public String Allusers(ModelMap model, Principal principal) {
+        User user = userService.getUserByName(principal.getName());
+        model.addAttribute("user", user);
         List<User> users = userService.allUsers();
         model.addAttribute("usersList", users);
         List<Role> roles = roleService.allRoles();
