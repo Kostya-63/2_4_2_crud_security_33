@@ -77,8 +77,8 @@ public class AdminController {
 
     @GetMapping(value = "/admin/addUser")
     public String addUser(User user, ModelMap model, Principal principal) {
-        User user = userService.getUserByName(principal.getName());
-        model.addAttribute("user", user);
+        User userAdmin = userService.getUserByName(principal.getName());
+        model.addAttribute("userAdmin", userAdmin);
         List<Role> roles = roleService.allRoles();
         model.addAttribute("rolesList", roles);
         model.addAttribute("user", user);
