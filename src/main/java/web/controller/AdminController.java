@@ -1,8 +1,9 @@
 package web.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import web.model.Role;
+import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
@@ -21,27 +22,23 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-    @GetMapping(value = "/login")
-    public String login() {
-        return "login";
+    @RequestMapping("/")
+    public ModelAndView index () {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
     }
 
-    @GetMapping(value = "/user")
-    public User getUserPage(Principal principal) {
-        return userService.getUserByName(principal.getName());
-    }
-
+//    @GetMapping(value = "/{id}")
+//    public User getUserPage(@PathVariable int id) {
+//        return userService.getById(id);
+//    }
+//
     @GetMapping(value = "/admin")
-    public String Allusers(ModelMap model, Principal principal) {
-        User user = userService.getUserByName(principal.getName());
-        model.addAttribute("user", user);
-        List<User> users = userService.allUsers();
-        model.addAttribute("usersList", users);
-        List<Role> roles = roleService.allRoles();
-        model.addAttribute("rolesList", roles);
-        return "UsersAndRoles";
+    public List<User> Allusers(ModelMap model, Principal principal) {
+        return userService.allUsers();
     }
-
+//
 //    @GetMapping(value = "/admin/userAdmin")
 //    public String getUserAdminPage(ModelMap model, Principal principal) {
 //        User user = userService.getUserByName(principal.getName());
@@ -95,38 +92,6 @@ public class AdminController {
 //    public String editUser(@ModelAttribute("deleteUser") User user) {
 //        User userToDel = userService.getById(user.getId());
 //        userService.delete(userToDel);
-//        return "redirect:/admin";
-//    }
-//
-//    @GetMapping(value = "/admin/editRole/{id}")
-//    public String editRole(@PathVariable("id") int id, ModelMap model) {
-//        Role role = roleService.getById(id);
-//        model.addAttribute("role", role);
-//        return "editRole";
-//    }
-//
-//    @PostMapping(value = "/admin/editRole")
-//    public String editRole(@ModelAttribute("updateRole") Role role) {
-//        roleService.edit(role);
-//        return "redirect:/admin";
-//    }
-//
-//    @GetMapping(value = "/admin/addRole")
-//    public String addRole(Role role, ModelMap model) {
-//        model.addAttribute("role", role);
-//        return "addRole";
-//    }
-//
-//    @PostMapping(value = "/admin/addRole")
-//    public String addRole(@ModelAttribute("addRole") Role role) {
-//        roleService.add(role);
-//        return "redirect:/admin";
-//    }
-//
-//    @GetMapping(value="/admin/deleteRole/{id}")
-//    public String deleteRole(@PathVariable("id") int id) {
-//        Role role = roleService.getById(id);
-//        roleService.delete(role);
 //        return "redirect:/admin";
 //    }
 }
