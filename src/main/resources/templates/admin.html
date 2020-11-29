@@ -111,11 +111,7 @@
 
 <div class="container-fluid d-flex h-100 flex-column">
     <nav class="navbar fixed-top navbar-dark bg-dark">
-        <div>
-            <a class="navbar-text font-weight-bolder text-white" th:utext="${user.name}">name</a>
-            <a class="navbar-text text-white">with roles: </a>
-            <a class="navbar-text text-white" th:utext="${user.roles}">roles</a>
-        </div>
+        <span id="header" class="navbar-text col-md-10" style="color: white"></span>
         <a class="text-white-50" href="#" th:href="@{/logout}">Logout</a>
     </nav>
 

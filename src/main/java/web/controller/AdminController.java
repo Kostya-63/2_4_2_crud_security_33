@@ -10,8 +10,8 @@ public class AdminController {
         return "user";
     }
 
-//    @GetMapping("/admin")
-//    public String adminInfo() {
-//        return "admin";
-//    }
+    @GetMapping("/admin")
+    public String adminInfo() {
+        return "admin";
+    }
 }

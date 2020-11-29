@@ -1,10 +1,10 @@
 package web.controller;
 
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import web.model.Role;
 import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
@@ -29,15 +29,22 @@ public class RESTController {
         return modelAndView;
     }
 
+    @GetMapping("/getUser")
+    public User getUser(Principal principal) {
+        return userService.getUserByName(principal.getName());
+    }
+
+
+
 //    @GetMapping(value = "/{id}")
 //    public User getUserPage(@PathVariable int id) {
 //        return userService.getById(id);
 //    }
 //
-    @GetMapping(value = "/admin")
-    public List<User> Allusers(ModelMap model, Principal principal) {
-        return userService.allUsers();
-    }
+//    @GetMapping(value = "/admin")
+//    public List<User> Allusers(ModelMap model, Principal principal) {
+//        return userService.allUsers();
+//    }
 //
 //    @GetMapping(value = "/admin/userAdmin")
 //    public String getUserAdminPage(ModelMap model, Principal principal) {

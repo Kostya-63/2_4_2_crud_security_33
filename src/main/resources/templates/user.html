@@ -6,6 +6,8 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Hello user</title>
+
+    <script src="/getUser.js"></script>
 </head>
 
 <body>
@@ -18,18 +20,14 @@
 
 <div class="container-fluid d-flex h-100 flex-column">
     <nav class="navbar fixed-top navbar-dark bg-dark">
-        <div>
-            <a class="navbar-text font-weight-bolder text-white" th:utext="${user.name}">name</a>
-            <a class="navbar-text text-white">with roles: </a>
-            <a class="navbar-text text-white" th:utext="${user.roles}">roles</a>
-        </div>
+        <span id="header" class="navbar-text col-md-10" style="color: white"></span>
         <a class="text-white-50" href="#" th:href="@{/logout}">Logout</a>
     </nav>
     <div class="row pt-5 bg-light flex-fill d-flex justify-content-start">
         <div class="col col-md-2 bg-white portlet-container portlet-dropzone">
             <div class="d-inline-block"></div>
             <div class="list-group">
-                <a href="/user" class="list-group-item active">User</a>
+                <a class="list-group-item active">User</a>
             </div>
         </div>
         <div class="col col-md-10 portlet-container portlet-dropzone">
@@ -40,7 +38,7 @@
                         About user
                     </div>
                     <div class="card-body">
-                        <table class="table-striped w-100">
+                        <table class="table table-striped w-100">
                             <thead>
                             <tr>
                                 <th class="p-2">#</th>
@@ -50,14 +48,7 @@
                                 <th class="p-2">Role</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr class="table-striped w-100">
-                                <td class="p-2" th:utext="${user.id}">Id</td>
-                                <td class="p-2" th:utext="${user.name}">Name</td>
-                                <td class="p-2" th:utext="${user.character}">Character</td>
-                                <td class="p-2" th:utext="${user.IQ}">IQ</td>
-                                <td class="p-2" th:utext="${user.roles}">Role</td>
-                            </tr>
+                            <tbody id="gUser">
                             </tbody>
                         </table>
                     </div>
