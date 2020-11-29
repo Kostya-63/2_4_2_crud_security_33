@@ -14,10 +14,6 @@
     html, body {
         height: 100%;
     }
-
-    .flex-fill {
-        flex: 1;
-    }
 </style>
 
 <div id="editUser" th:attrappend="id=${User.id}" class="modal fade" th:each="User : ${usersList}">
@@ -116,75 +112,142 @@
 <div class="container-fluid d-flex h-100 flex-column">
     <nav class="navbar fixed-top navbar-dark bg-dark">
         <div>
-        <a class="navbar-text font-weight-bolder text-white" th:utext="${user.name}">name</a>
-        <a class="navbar-text text-white">with roles: </a>
-        <a class="navbar-text text-white" th:utext="${user.roles}">roles</a>
+            <a class="navbar-text font-weight-bolder text-white" th:utext="${user.name}">name</a>
+            <a class="navbar-text text-white">with roles: </a>
+            <a class="navbar-text text-white" th:utext="${user.roles}">roles</a>
         </div>
         <a class="text-white-50" href="#" th:href="@{/logout}">Logout</a>
     </nav>
+
     <div class="row pt-5 bg-light flex-fill d-flex justify-content-start">
         <div class="col col-md-2 bg-white portlet-container portlet-dropzone">
             <div class="d-inline-block"></div>
-            <div class="list-group">
-                <a href="/admin" class="list-group-item active">Admin</a>
-                <a href="/admin/userAdmin" class="list-group-item">User</a>
-            </div>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#adminPanel">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#userAdmin">User</a>
+                </li>
+            </ul>
         </div>
+
         <div class="col col-md-10 portlet-container portlet-dropzone">
             <div class="mt-3 d-inline-block" style="width: 100%">
-                <h2 class="text-left">User information page</h2>
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/admin">Users tabe</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/addUser">New user</a>
-                    </li>
-                </ul>
-                <div class="card">
-                    <div class="card-header font-weight-bolder">
-                        All users
+                <div class="tab-content">
+
+                    <!--                    вкладка панель админа-->
+                    <div class="tab-pane fade show active" id="adminPanel">
+                        <h2 class="text-left">Admin panel</h2>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#usersTable">Users tabe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#addUser">New user</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="usersTable">
+                                <div class="card">
+                                    <div class="card-header font-weight-bolder">
+                                        All users
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-striped w-100">
+                                            <thead>
+                                            <tr>
+                                                <th class="p-2">Id</th>
+                                                <th class="p-2">Name</th>
+                                                <th class="p-2">Character</th>
+                                                <th class="p-2">Iq</th>
+                                                <th class="p-2">Role</th>
+                                                <th class="p-2" style="width: 9%">Edit</th>
+                                                <th class="p-2" style="width: 9%">Delete</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="allUsers">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="addUser">
+                                <div class="card text-center">
+                                    <div class="card-header font-weight-bolder text-left">
+                                        Add new user
+                                    </div>
+                                    <form class="form mx-auto w-25" name="addUser" action="/admin/addUser" method="post">
+                                        <input type="hidden" name="id" th:value="${user.getId()}">
+                                        <div class="form-group">
+                                            <label class="font-weight-bolder">Name</label>
+                                            <input required type="text" class="form-control form-control-sm" name="name"
+                                                   placeholder="Name" th:value="${user.getName()}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bolder">Password</label>
+                                            <input required type="text" class="form-control form-control-sm" name="password"
+                                                   placeholder="Password" th:value="${user.getPassword()}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bolder">Character</label>
+                                            <input required type="text" class="form-control form-control-sm" name="character"
+                                                   placeholder="Character" th:value="${user.getCharacter()}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bolder">IQ</label>
+                                            <input required type="text" class="form-control form-control-sm" name="IQ"
+                                                   placeholder="iq" th:value="${user.getIQ()}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-bolder">Role</label>
+                                            <select class="form-control form-control-sm" name="rolesAddUser" multiple required>
+                                                <div th:each="Role : ${rolesList}">
+                                                    <option th:value="${Role.getId()}" th:text="${Role.getRole()}"/>
+                                                </div>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="btn btn-success text-white w-50" type="submit" value="Add new user"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
-                    <div class="card-body">
-                        <table class="table-striped w-100">
-                            <thead>
-                            <tr>
-                                <th class="p-2">Id</th>
-                                <th class="p-2">Name</th>
-                                <th class="p-2">Character</th>
-                                <th class="p-2">Iq</th>
-                                <th class="p-2">Role</th>
-                                <th class="p-2" style="width: 9%">Edit</th>
-                                <th class="p-2" style="width: 9%">Delete</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="table-striped w-100" th:each="User : ${usersList}">
-                                <td class="p-2" th:utext="${User.id}">Id</td>
-                                <td class="p-2" th:utext="${User.name}">Name</td>
-                                <td class="p-2" th:utext="${User.character}">Character</td>
-                                <td class="p-2" th:utext="${User.IQ}">IQ</td>
-                                <td class="p-2" th:utext="${User.roles}">Role</td>
-                                <td class="p-2" style="width: 9%"><a class="btn btn-primary text-white"
-                                                                     data-toggle="modal"
-                                                                     data-target="#editUser"
-                                                                     th:attrappend="data-target=${User.id}">Edit</a>
-                                </td>
-                                <td class="p-2" style="width: 9%"><a class="btn btn-danger text-white"
-                                                                     data-toggle="modal"
-                                                                     data-target="#deleteUser"
-                                                                     th:attrappend="data-target=${User.id}">Delete</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+
+                    <!--                    вкладка информации о юзере-->
+                    <div class="tab-pane fade" id="userAdmin">
+                        <h2 class="text-left">User information page</h2>
+                        <div class="card">
+                            <div class="card-header font-weight-bolder">
+                                About user
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped w-100">
+                                    <thead>
+                                    <tr>
+                                        <th class="p-2">Id</th>
+                                        <th class="p-2">Name</th>
+                                        <th class="p-2">Character</th>
+                                        <th class="p-2">Iq</th>
+                                        <th class="p-2">Role</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="gUser">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
 <!--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"-->
