@@ -10,20 +10,12 @@ function deletePost(e){
     let roles = setRoles(Array.from(document.getElementById("roleDelete").selectedOptions)
         .map(option => option.value));
 
-    fetch("http://localhost:8088/deleteUser", {
-        method:"DELETE",
-        headers: {
-            "Accept": "application/json, text/plain, */*",
-            "Content-type":"application/json"
-        },
-        body:JSON.stringify({
-            id:id,
-            name:name,
-            character:character,
-            IQ:IQ,
-            roles:roles})
+    fetch("http://localhost:8088/deleteUser/" + id, {
+        method: "DELETE"
+    }).catch(function (err) {
+        console.log('Fetch Error :-S', err);
     }).finally(() => {
         $('#deleteUser').modal("hide")
         getUsers();
-    })
+    });
 }

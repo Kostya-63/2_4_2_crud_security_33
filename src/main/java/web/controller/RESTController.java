@@ -67,10 +67,9 @@ public class RESTController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/deleteUser")
-    public ResponseEntity<?> deleteUser(@RequestBody User user) {
-        userService.delete(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @DeleteMapping("/deleteUser/{id}")
+    public void delete(@PathVariable("id") int id) {
+        userService.delete(userService.getById(id));
     }
 
     @GetMapping("/getUser/{id}")
