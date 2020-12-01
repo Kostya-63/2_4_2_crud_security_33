@@ -6,13 +6,6 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Admin panel</title>
-
-    <script src="/getUser.js"></script>
-    <script src="/allUsers.js"></script>
-    <script src="/modalWindow.js"></script>
-    <script src="/addUser.js"></script>
-    <script src="/edit.js"></script>
-    <script src="/delete.js"></script>
 </head>
 
 <body>
@@ -36,29 +29,33 @@
                     <div class="form-group mx-auto w-50">
                         <label class="font-weight-bolder" for="nameEdit">Name</label>
                         <input required type="text" class="form-control form-control-sm" id="nameEdit"
-                               placeholder="Name">
+                               name="name" placeholder="Name">
                     </div>
                     <div class="form-group mx-auto w-50">
                         <label class="font-weight-bolder">Password</label>
-                        <input required type="text" class="form-control form-control-sm" name="password"
+                        <input type="text" class="form-control form-control-sm" id="passwordEdit"
+                               name="password"
                                placeholder="Password">
                     </div>
                     <div class="form-group mx-auto w-50">
                         <label class="font-weight-bolder">Character</label>
-                        <input required type="text" class="form-control form-control-sm" name="character"
+                        <input required type="text" class="form-control form-control-sm" id="characterEdit"
+                               name="character"
                                placeholder="Character">
                     </div>
                     <div class="form-group mx-auto w-50">
                         <label class="font-weight-bolder">IQ</label>
-                        <input required type="text" class="form-control form-control-sm" name="IQ"
+                        <input required type="text" class="form-control form-control-sm" id="IQEdit"
+                               name="IQ"
                                placeholder="iq">
                     </div>
                     <div class="form-group mx-auto w-50">
                         <label class="font-weight-bolder">Role</label>
-                        <select class="form-control form-control-sm" name="rolesUpdateUser" multiple>
-                            <div>
-                                <option ></option>
-                            </div>
+                        <select class="form-control form-control-sm bg-light" id="roleEdit" name="roles" multiple
+                                required>
+<!--                            <div th:each="Role : ${rolesList}">-->
+<!--                                <option th:value="${Role.id}" th:text="${Role.role}"></option>-->
+<!--                            </div>-->
                         </select>
                     </div>
                     <div class="card-footer text-right bg-white">
@@ -80,27 +77,27 @@
                         Delete user
                         <button class="close" data-dismiss="modal">x</button>
                     </div>
-                    <input type="hidden" name="id">
+                    <input type="hidden" name="id" id="idDelete">
                     <div class="form-group mx-auto w-50">
-                        <label class="font-weight-bolder">Name</label>
+                        <label class="font-weight-bolder" for="nameDelete">Name</label>
                         <input required type="text" class="form-control form-control-sm" name="name"
-                               placeholder="Name" readonly>
+                               placeholder="Name" id="nameDelete" readonly value="">
                     </div>
                     <div class="form-group mx-auto w-50">
-                        <label class="font-weight-bolder">Character</label>
+                        <label class="font-weight-bolder" for="characterDelete">Character</label>
                         <input required type="text" class="form-control form-control-sm" name="character"
-                               placeholder="Character" readonly>
+                               placeholder="Character" id="characterDelete" readonly value="">
                     </div>
                     <div class="form-group mx-auto w-50">
-                        <label class="font-weight-bolder">IQ</label>
+                        <label class="font-weight-bolder" for="IQDelete">IQ</label>
                         <input required type="text" class="form-control form-control-sm" name="IQ"
-                               placeholder="iq" readonly>
+                               placeholder="iq" id="IQDelete" readonly value="">
                     </div>
                     <div class="form-group mx-auto w-50 text-black-50">
-                        <label class="font-weight-bolder">Role</label>
-                        <select class="form-control form-control-sm bg-light" name="rolesUpdateUser" multiple>
-                            <div >
-                                <option  disabled></option>
+                        <label class="font-weight-bolder" for="roleDelete">Role</label>
+                        <select class="form-control form-control-sm bg-light" id="roleDelete" name="roles" multiple value="">
+                            <div th:each="Role : ${rolesList}">
+                                <option th:value="${Role.id}" th:text="${Role.role}" disabled></option>
                             </div>
                         </select>
                     </div>
@@ -142,11 +139,11 @@
                         <h2 class="text-left">Admin panel</h2>
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#usersTable" id="Table">Users
+                                <a class="nav-link active" data-toggle="tab" href="#usersTable" id="allUsersTable">Users
                                     tabe</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#addUser" id="addNewUser">New user</a>
+                                <a class="nav-link" data-toggle="tab" href="#newUser" id="addNewUser">New user</a>
                             </li>
                         </ul>
 
@@ -177,12 +174,12 @@
                             </div>
 
                             <!--                            добавление нового юзера-->
-                            <div class="tab-pane fade" id="addUser">
+                            <div class="tab-pane fade" id="newUser">
                                 <div class="card text-center">
                                     <div class="card-header font-weight-bolder text-left">
                                         Add new user
                                     </div>
-                                    <form class="form mx-auto w-25" id="newUser">
+                                    <form class="form mx-auto w-25" id="addUser">
                                         <div class="form-group">
                                             <label class="font-weight-bolder" for="name">Name</label>
                                             <input required type="text"
@@ -216,10 +213,14 @@
                                             <select class="form-control form-control-sm"
                                                     id="roles"
                                                     multiple>
+                                                <div th:each="Role : ${rolesList}">
+                                                    <option th:value="${Role.id}" th:text="${Role.role}"></option>
+                                                </div>
                                             </select>
                                         </div>
                                         <div>
-                                        <button class="btn btn-success text-white w-50" type="submit">Add new user</button>
+                                            <button class="btn btn-success text-white w-50" type="submit">Add new user
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -273,6 +274,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script src="table.js"></script>
+<script src="/getUser.js"></script>
+<script src="/allUsers.js"></script>
+<script src="/addUser.js"></script>
+<script src="/edit.js"></script>
+<script src="/delete.js"></script>
 </body>
 </html>

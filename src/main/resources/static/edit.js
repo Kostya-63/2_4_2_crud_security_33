@@ -4,11 +4,10 @@ function editPost(e){
     e.preventDefault();
 
     let id = document.getElementById("idEdit").value;
-    let firstName = document.getElementById("firstNameEdit").value;
-    let lastName = document.getElementById("lastNameEdit").value;
-    let age = document.getElementById("ageEdit").value;
-    let mail = document.getElementById("mailEdit").value;
+    let name = document.getElementById("nameEdit").value;
     let password = document.getElementById("passwordEdit").value;
+    let character = document.getElementById("characterEdit").value;
+    let IQ = document.getElementById("IQEdit").value;
     let roles = setRoles(Array.from(document.getElementById("roleEdit").selectedOptions)
         .map(option => option.value));
 
@@ -16,19 +15,18 @@ function editPost(e){
         method:"PUT",
         headers: {
             "Accept": "application/json, text/plain, */*",
-            "Content-type":"application/json"
+            "Content-type":"application/json; charset = utf-8"
         },
         body:JSON.stringify({
             id:id,
-            firstName:firstName,
-            lastName:lastName,
-            age:age,
-            mail:mail,
+            name:name,
             password:password,
+            character:character,
+            IQ:IQ,
             roles:roles
         })
     }).finally(() => {
-        $('#edit').modal("hide")
+        $('#editUser').modal("hide")
         getUsers();
     })
 }

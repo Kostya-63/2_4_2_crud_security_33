@@ -22,18 +22,23 @@ public class Role implements GrantedAuthority {
 
     }
 
-    public Role(String role) {
-        this.role = role;
-    }
-
     public Role(int id, String role) {
         this.id = id;
         this.role = role;
     }
 
+    public Role(String role) {
+        if (role.equals("ROLE_ADMIN")) {
+            this.id = 1;
+        } else if (role.equals("ROLE_USER")) {
+            this.id = 2;
+        }
+        this.role = role;
+    }
+
+    @Transient
     @ManyToMany(mappedBy = "roles")
-    @JsonBackReference
-    private Set<User> users = new HashSet<>();
+    private Set<User> users;
 
     public int getId() {
         return id;

@@ -5,27 +5,27 @@ function getUsers() {
             let output = "";
             data.forEach(function (user) {
 
-                // let userRoles = "";
-                // for (let i = 0; i < user.roles.length; i++){
-                //     userRoles+=`${user.roles[i].role} `
-                // }
+                let userRoles = "";
+                for (let i = 0; i < user.rolesSet.length; i++){
+                    userRoles+=`${user.rolesSet[i].role} `
+                }
 
                 output += `
                 <tr>
                 <td class="p-2" id="id${user.id}">${user.id}</td>
-                <td class="p-2" id="firstName${user.id}">${user.name}</td> 
-                <td class="p-2" id="lastName${user.id}">${user.character}</td>
-                <td class="p-2" id="age${user.id}">${user.iq}</td>
+                <td class="p-2" id="name${user.id}">${user.name}</td> 
+                <td class="p-2" id="character${user.id}">${user.character}</td>
+                <td class="p-2" id="IQ${user.id}">${user.iq}</td>
                 <td class="p-2" id="roles${user.id}">${user.roles}</td>
                 <td class="p-2" style="width: 9%">
                 <a class="btn btn-primary text-white"
                 data-toggle="modal" data-target="#editUser" id="callModalEdit"
-                onclick="openModalWindow(${user.id})">Edit</a>
+                onclick="modalWindowEdit(${user.id})">Edit</a>
                 </td>
                 <td class="p-2" style="width: 9%">
                 <a class="btn btn-danger text-white" role="button"
                 data-toggle="modal" data-target="#deleteUser" id="delete-post"
-                onclick="openModalWindowDel(${user.id})">Delete</a>
+                onclick="modalWindowDelete(${user.id})">Delete</a>
                 </td>
               </tr>
           `;
@@ -34,3 +34,18 @@ function getUsers() {
         })
 }
 getUsers()
+
+function modalWindowEdit(id) {
+    document.getElementById("idEdit").value = id;
+    document.getElementById("nameEdit").value = $("#name" + id).text();
+    document.getElementById("passwordEdit").value = "";
+    document.getElementById("characterEdit").value = $("#character" + id).text();
+    document.getElementById("IQEdit").value = $("#IQ" + id).text();
+}
+
+function modalWindowDelete(id) {
+    document.getElementById("idDelete").value = id;
+    document.getElementById("nameDelete").value = $("#name" + id).text();
+    document.getElementById("characterDelete").value = $("#character" + id).text();
+    document.getElementById("IQDelete").value = $("#IQ" + id).text();
+}

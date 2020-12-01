@@ -2,6 +2,7 @@ package web.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import web.model.Role;
@@ -21,6 +22,20 @@ public class RESTController {
     public RESTController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
+    }
+
+    @RequestMapping("/user")
+    public ModelAndView user(ModelAndView modelAndView) {
+        modelAndView.setViewName("user");
+        return modelAndView;
+    }
+
+    @RequestMapping("/admin")
+    public ModelAndView admin(ModelAndView modelAndView) {
+        List<Role> roles = roleService.allRoles();
+        modelAndView.setViewName("admin");
+        modelAndView.addObject("rolesList", roles);
+        return modelAndView;
     }
 
     @RequestMapping("/")

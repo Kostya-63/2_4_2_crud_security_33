@@ -33,7 +33,6 @@ public class User implements UserDetails {
     private String confirmPassword;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JsonManagedReference
     private Set<Role> roles = new HashSet<>();
 
     public User() {
@@ -108,7 +107,7 @@ public class User implements UserDetails {
         return roles
                 .stream()
                 .map(Role::getRole)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(" "));
     }
 
     public void setRoles(Role role) {
