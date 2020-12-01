@@ -23,7 +23,7 @@ function editPost(e){
             password:password,
             character:character,
             IQ:IQ,
-            roles:roles
+           // roles:roles
         })
     }).finally(() => {
         $('#editUser').modal("hide")
