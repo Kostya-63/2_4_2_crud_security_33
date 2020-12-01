@@ -53,9 +53,6 @@
                         <label class="font-weight-bolder">Role</label>
                         <select class="form-control form-control-sm bg-light" id="roleEdit" name="roles" multiple
                                 required>
-<!--                            <div th:each="Role : ${rolesList}">-->
-<!--                                <option th:value="${Role.id}" th:text="${Role.role}"></option>-->
-<!--                            </div>-->
                         </select>
                     </div>
                     <div class="card-footer text-right bg-white">
@@ -96,9 +93,6 @@
                     <div class="form-group mx-auto w-50 text-black-50">
                         <label class="font-weight-bolder" for="roleDelete">Role</label>
                         <select class="form-control form-control-sm bg-light" id="roleDelete" name="roles" multiple value="">
-                            <div th:each="Role : ${rolesList}">
-                                <option th:value="${Role.id}" th:text="${Role.role}" disabled></option>
-                            </div>
                         </select>
                     </div>
                     <div class="card-footer text-right bg-white">
@@ -213,9 +207,6 @@
                                             <select class="form-control form-control-sm"
                                                     id="roles"
                                                     multiple>
-                                                <div th:each="Role : ${rolesList}">
-                                                    <option th:value="${Role.id}" th:text="${Role.role}"></option>
-                                                </div>
                                             </select>
                                         </div>
                                         <div>
@@ -279,5 +270,6 @@
 <script src="/addUser.js"></script>
 <script src="/edit.js"></script>
 <script src="/delete.js"></script>
+<script src="/inputRoles.js"></script>
 </body>
 </html>

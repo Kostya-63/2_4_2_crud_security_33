@@ -12,6 +12,7 @@ import web.service.UserService;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class RESTController {
@@ -76,4 +77,10 @@ public class RESTController {
     public User getById(@PathVariable(name = "id") int id) {
         return userService.getById(id);
     }
+
+    @GetMapping("/allRoles")
+    public List<Role> allRoles() {
+        return roleService.allRoles();
+    }
+
 }

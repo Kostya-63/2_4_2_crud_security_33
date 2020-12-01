@@ -16,7 +16,7 @@ function getUsers() {
                 <td class="p-2" id="name${user.id}">${user.name}</td> 
                 <td class="p-2" id="character${user.id}">${user.character}</td>
                 <td class="p-2" id="IQ${user.id}">${user.iq}</td>
-                <td class="p-2" id="roles${user.id}">${user.roles}</td>
+                <td class="p-2" id="roles${user.id}">${userRoles}</td>
                 <td class="p-2" style="width: 9%">
                 <a class="btn btn-primary text-white"
                 data-toggle="modal" data-target="#editUser" id="callModalEdit"
@@ -49,3 +49,4 @@ function modalWindowDelete(id) {
     document.getElementById("characterDelete").value = $("#character" + id).text();
     document.getElementById("IQDelete").value = $("#IQ" + id).text();
 }
+

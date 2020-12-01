@@ -79,11 +79,11 @@ public class User implements UserDetails {
         this.character = character;
     }
 
-    public int getIQ() {
+    public int getIq() {
         return iq;
     }
 
-    public void setIQ(int iq) {
+    public void setIq(int iq) {
         this.iq = iq;
     }
 
@@ -107,7 +107,7 @@ public class User implements UserDetails {
         return roles
                 .stream()
                 .map(Role::getRole)
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(", "));
     }
 
     public void setRoles(Role role) {
