@@ -7,8 +7,6 @@ function addNewUser(e){
     let password = document.getElementById("password").value;
     let character = document.getElementById("character").value;
     let iq = document.getElementById("iq").value;
-    // let roles = setRoles(Array.from(document.getElementById("roles").selectedOptions)
-    //     .map(option => option.value));
 
     let roleUser = document.getElementById('newROLE_USER')
     let roleAdmin = document.getElementById('newROLE_ADMIN')
@@ -34,11 +32,11 @@ function addNewUser(e){
             password: password,
             character: character,
             iq: iq,
-            roles: [{
-                id: roleId,
-                role: rolesArr,
-                authority: rolesArr
-            }]
+            // roles: [{
+            //     id: roleId,
+            //     role: rolesArr,
+            //     authority: rolesArr
+            // }]
         })
     })
         .finally(() => {
@@ -47,17 +45,6 @@ function addNewUser(e){
             document.getElementById("addUser").reset();
         })
 }
-
-// function setRoles(someRoles) {
-//     let roles = [];
-//     if (someRoles.indexOf("ROLE_USER") >= 0) {
-//         roles.push({"id": 2, "name": "ROLE_USER"});
-//     }
-//     if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
-//         roles.push({"id": 1, "name": "ROLE_ADMIN"});
-//     }
-//     return roles;
-// }
 
 function inputRolesIntoAdd() {
     fetch("http://localhost:8088/allRoles").then((res) => res.json())
