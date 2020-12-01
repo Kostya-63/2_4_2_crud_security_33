@@ -33,20 +33,7 @@ function getUsers() {
             document.getElementById("allUsers").innerHTML = output;
         })
 }
+getHeader()
 getUsers()
 
-function modalWindowEdit(id) {
-    document.getElementById("idEdit").value = id;
-    document.getElementById("nameEdit").value = $("#name" + id).text();
-    document.getElementById("passwordEdit").value = "";
-    document.getElementById("characterEdit").value = $("#character" + id).text();
-    document.getElementById("IQEdit").value = $("#iq" + id).text();
-}
-
-function modalWindowDelete(id) {
-    document.getElementById("idDelete").value = id;
-    document.getElementById("nameDelete").value = $("#name" + id).text();
-    document.getElementById("characterDelete").value = $("#character" + id).text();
-    document.getElementById("IQDelete").value = $("#iq" + id).text();
-}
 

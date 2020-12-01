@@ -42,3 +42,15 @@ function setRoles(someRoles) {
     }
     return roles;
 }
+
+function inputRolesIntoAdd() {
+    fetch("http://localhost:8088/allRoles").then((res) => res.json())
+        .then((data) => {
+            let output = "";
+            data.forEach(function (role) {
+                output += `<option id="new${role.role}">${role.role}</option>`;
+            });
+            document.getElementById("roles").innerHTML = output;
+        })
+}
+inputRolesIntoAdd()

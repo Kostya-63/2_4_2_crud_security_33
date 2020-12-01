@@ -14,6 +14,26 @@ function deletePost(e){
         method: "DELETE"
     }).finally(() => {
         $('#deleteUser').modal("hide")
+        getHeader();
         getUsers();
     });
+}
+
+function inputRolesIntoDelete() {
+    fetch("http://localhost:8088/allRoles").then((res) => res.json())
+        .then((data) => {
+            let output = "";
+            data.forEach(function (role) {
+                output += `<option id="delete${role.role}">${role.role}</option>`;
+            });
+            document.getElementById("roleEdit").innerHTML = output;
+        })
+}
+inputRolesIntoDelete()
+
+function modalWindowDelete(id) {
+    document.getElementById("idDelete").value = id;
+    document.getElementById("nameDelete").value = $("#name" + id).text();
+    document.getElementById("characterDelete").value = $("#character" + id).text();
+    document.getElementById("IQDelete").value = $("#iq" + id).text();
 }

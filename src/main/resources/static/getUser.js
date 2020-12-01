@@ -14,7 +14,7 @@ function getUser() {
                 <td class="p-2">${user.id}</td>
                 <td class="p-2">${user.name}</td>
                 <td class="p-2">${user.character}</td>
-                <td class="p-2">${user.IQ}</td>
+                <td class="p-2">${user.iq}</td>
                 <td class="p-2">${userRoles}</td>
             `;
             output += "<tr>";
@@ -26,10 +26,6 @@ function getUser() {
 function getHeader() {
     fetch(url).then((res) => res.json())
         .then((user) => {
-            // let userRoles = "";
-            // for (let i = 0; i < user.roles.length; i++) {
-            //     userRoles += `${user.roles[i].role} `
-            // }
             let output = "";
             output += `${user.name}  with roles: ${user.roles}`;
             document.getElementById("header").innerHTML = output;
