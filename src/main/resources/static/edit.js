@@ -11,6 +11,7 @@ function editPost(e) {
     let roles = setRoles(Array.from(document.getElementById("roleEdit").selectedOptions)
         .map(option => option.value));
 
+
     fetch("http://localhost:8088/editUser", {
         method: "PUT",
         headers: {
@@ -23,7 +24,7 @@ function editPost(e) {
             password: password,
             character: character,
             iq: iq,
-            //roles: roles
+            roles: roles
         })
     }).finally(() => {
         $('#editUser').modal("hide")
@@ -32,12 +33,23 @@ function editPost(e) {
     })
 }
 
+function setRoles(someRoles) {
+    let roles = [];
+    if (someRoles.indexOf("ROLE_USER") >= 0) {
+        roles.push({"id": 2, "name": "ROLE_USER"});
+    }
+    if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
+        roles.push({"id": 1, "name": "ROLE_ADMIN"});
+    }
+    return roles;
+}
+
 function inputRolesIntoEdit() {
     fetch("http://localhost:8088/allRoles").then((res) => res.json())
         .then((data) => {
             let output = "";
             data.forEach(function (role) {
-                output += `<option id="edit${role.role}">${role.role}</option>`;
+                output += `<option id="${role.role}">${role.role}</option>`;
             });
             document.getElementById("roleEdit").innerHTML = output;
         })

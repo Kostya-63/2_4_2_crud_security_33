@@ -1,22 +1,43 @@
 document.getElementById("deleteUserModal").addEventListener("submit", deletePost)
 
-function deletePost(e){
+function deletePost(e) {
     e.preventDefault();
 
     let id = document.getElementById("idDelete").value;
     let name = document.getElementById("nameDelete").value;
     let character = document.getElementById("characterDelete").value;
-    let IQ = document.getElementById("IQDelete").value;
+    let iq = document.getElementById("IQDelete").value;
     let roles = setRoles(Array.from(document.getElementById("roleDelete").selectedOptions)
         .map(option => option.value));
 
-    fetch("http://localhost:8088/deleteUser/" + id, {
-        method: "DELETE"
+    fetch("http://localhost:8088/deleteUser", {
+        method: "DELETE",
+        headers: {
+            "Accept": "application/json, text/plain, */*",
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+            id: id,
+            name: name,
+            character: character,
+            iq: iq
+        })
     }).finally(() => {
         $('#deleteUser').modal("hide")
         getHeader();
         getUsers();
     });
+
+    function setRoles(someRoles) {
+        let roles = [];
+        if (someRoles.indexOf("ROLE_USER") >= 0) {
+            roles.push({"role": "ROLE_USER"});
+        }
+        if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
+            roles.push({"role": "ROLE_ADMIN"});
+        }
+        return roles;
+    }
 }
 
 function inputRolesIntoDelete() {
@@ -26,9 +47,10 @@ function inputRolesIntoDelete() {
             data.forEach(function (role) {
                 output += `<option id="delete${role.role}">${role.role}</option>`;
             });
-            document.getElementById("roleEdit").innerHTML = output;
+            document.getElementById("roleDelete").innerHTML = output;
         })
 }
+
 inputRolesIntoDelete()
 
 function modalWindowDelete(id) {

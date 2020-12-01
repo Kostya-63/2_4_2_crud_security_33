@@ -7,14 +7,26 @@ function addNewUser(e){
     let password = document.getElementById("password").value;
     let character = document.getElementById("character").value;
     let iq = document.getElementById("iq").value;
-    let roles = setRoles(Array.from(document.getElementById("roles").selectedOptions)
-        .map(option => option.value));
+    // let roles = setRoles(Array.from(document.getElementById("roles").selectedOptions)
+    //     .map(option => option.value));
+
+    let roleUser = document.getElementById('newROLE_USER')
+    let roleAdmin = document.getElementById('newROLE_ADMIN')
+    let rolesArr;
+    let roleId;
+    if (roleAdmin.selected) {
+        rolesArr = roleAdmin.value
+        roleId = 1;
+    }
+    if (roleUser.selected) {
+        rolesArr = roleUser.value
+        roleId = 2;
+    }
 
     fetch("http://localhost:8088/addUser", {
-        method: "POST",
+        method: 'POST',
         headers: {
-            "Accept": "application/json, text/plain, */*",
-            "Content-type": "application/json"
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             id: null,
@@ -22,7 +34,11 @@ function addNewUser(e){
             password: password,
             character: character,
             iq: iq,
-            //roles: roles
+            roles: [{
+                id: roleId,
+                role: rolesArr,
+                authority: rolesArr
+            }]
         })
     })
         .finally(() => {
@@ -32,16 +48,16 @@ function addNewUser(e){
         })
 }
 
-function setRoles(someRoles) {
-    let roles = [];
-    if (someRoles.indexOf("ROLE_USER") >= 0) {
-        roles.push({"id": 2, "name": "ROLE_USER"});
-    }
-    if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
-        roles.push({"id": 1, "name": "ROLE_ADMIN"});
-    }
-    return roles;
-}
+// function setRoles(someRoles) {
+//     let roles = [];
+//     if (someRoles.indexOf("ROLE_USER") >= 0) {
+//         roles.push({"id": 2, "name": "ROLE_USER"});
+//     }
+//     if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
+//         roles.push({"id": 1, "name": "ROLE_ADMIN"});
+//     }
+//     return roles;
+// }
 
 function inputRolesIntoAdd() {
     fetch("http://localhost:8088/allRoles").then((res) => res.json())
