@@ -17,11 +17,12 @@ function addNewUser(e){
             "Content-type": "application/json"
         },
         body: JSON.stringify({
-            name: name,
-            password: password,
-            character: character,
-            IQ: IQ,
-            roles: roles
+            id: null
+            // name: name,
+            // password: password,
+            // character: character,
+            // IQ: IQ,
+            // roles: roles
         })
     })
         .finally(() => {

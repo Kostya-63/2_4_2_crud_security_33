@@ -1,6 +1,7 @@
 package web.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -28,15 +29,10 @@ public class Role implements GrantedAuthority {
     }
 
     public Role(String role) {
-        if (role.equals("ROLE_ADMIN")) {
-            this.id = 1;
-        } else if (role.equals("ROLE_USER")) {
-            this.id = 2;
-        }
         this.role = role;
     }
 
-    @Transient
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
