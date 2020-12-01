@@ -7,7 +7,7 @@ function editPost(e){
     let name = document.getElementById("nameEdit").value;
     let password = document.getElementById("passwordEdit").value;
     let character = document.getElementById("characterEdit").value;
-    let IQ = document.getElementById("IQEdit").value;
+    let iq = document.getElementById("IQEdit").value;
     let roles = setRoles(Array.from(document.getElementById("roleEdit").selectedOptions)
         .map(option => option.value));
 
@@ -22,7 +22,7 @@ function editPost(e){
             name:name,
             password:password,
             character:character,
-            IQ:IQ,
+            iq:iq,
            // roles:roles
         })
     }).finally(() => {

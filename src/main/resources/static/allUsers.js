@@ -15,7 +15,7 @@ function getUsers() {
                 <td class="p-2" id="id${user.id}">${user.id}</td>
                 <td class="p-2" id="name${user.id}">${user.name}</td> 
                 <td class="p-2" id="character${user.id}">${user.character}</td>
-                <td class="p-2" id="IQ${user.id}">${user.iq}</td>
+                <td class="p-2" id="iq${user.id}">${user.iq}</td>
                 <td class="p-2" id="roles${user.id}">${userRoles}</td>
                 <td class="p-2" style="width: 9%">
                 <a class="btn btn-primary text-white"
@@ -40,13 +40,13 @@ function modalWindowEdit(id) {
     document.getElementById("nameEdit").value = $("#name" + id).text();
     document.getElementById("passwordEdit").value = "";
     document.getElementById("characterEdit").value = $("#character" + id).text();
-    document.getElementById("IQEdit").value = $("#IQ" + id).text();
+    document.getElementById("IQEdit").value = $("#iq" + id).text();
 }
 
 function modalWindowDelete(id) {
     document.getElementById("idDelete").value = id;
     document.getElementById("nameDelete").value = $("#name" + id).text();
     document.getElementById("characterDelete").value = $("#character" + id).text();
-    document.getElementById("IQDelete").value = $("#IQ" + id).text();
+    document.getElementById("IQDelete").value = $("#iq" + id).text();
 }
 

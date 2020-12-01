@@ -12,8 +12,6 @@ function deletePost(e){
 
     fetch("http://localhost:8088/deleteUser/" + id, {
         method: "DELETE"
-    }).catch(function (err) {
-        console.log('Fetch Error :-S', err);
     }).finally(() => {
         $('#deleteUser').modal("hide")
         getUsers();

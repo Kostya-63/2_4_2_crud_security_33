@@ -6,7 +6,7 @@ function addNewUser(e){
     let name = document.getElementById("name").value;
     let password = document.getElementById("password").value;
     let character = document.getElementById("character").value;
-    let IQ = document.getElementById("IQ").value;
+    let iq = document.getElementById("iq").value;
     let roles = setRoles(Array.from(document.getElementById("roles").selectedOptions)
         .map(option => option.value));
 
@@ -21,7 +21,7 @@ function addNewUser(e){
             name: name,
             password: password,
             character: character,
-            IQ: IQ,
+            iq: iq,
             //roles: roles
         })
     })
