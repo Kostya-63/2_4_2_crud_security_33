@@ -2,7 +2,6 @@ package web.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import web.model.Role;
@@ -12,7 +11,6 @@ import web.service.UserService;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class RESTController {

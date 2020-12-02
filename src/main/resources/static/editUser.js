@@ -24,7 +24,7 @@ function editPost(e) {
             password: password,
             character: character,
             iq: iq,
-//            roles: roles
+            roles: [{"id": 2}]
         })
     }).finally(() => {
         $('#editUser').modal("hide")
@@ -35,10 +35,10 @@ function editPost(e) {
 function setRoles(someRoles) {
     let roles = [];
     if (someRoles.indexOf("ROLE_USER") >= 0) {
-        roles.push({"id": 2, "role": "ROLE_USER"});
+        roles.push({"id": 2, "roles": "ROLE_USER"});
     }
     if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
-        roles.push({"id": 1, "role": "ROLE_ADMIN"});
+        roles.push({"id": 1, "roles": "ROLE_ADMIN"});
     }
     return roles;
 }
@@ -48,7 +48,7 @@ function inputRolesIntoEdit() {
         .then((data) => {
             let output = "";
             data.forEach(function (role) {
-                output += `<option id="${role.role}">${role.role}</option>`;
+                output += `<option>${role.role}</option>`;
             });
             document.getElementById("roleEdit").innerHTML = output;
         })

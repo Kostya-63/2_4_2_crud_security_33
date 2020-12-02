@@ -18,7 +18,6 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository = roleRepository;
     }
 
-
     @Override
     public List<Role> allRoles() {
         return roleRepository.findAll();
@@ -26,7 +25,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void add(Role role) {
-        roleRepository.saveAndFlush(role);
+        roleRepository.save(role);
     }
 
     @Override
