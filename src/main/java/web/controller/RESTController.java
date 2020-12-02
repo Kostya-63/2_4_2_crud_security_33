@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import web.model.Role;
 import web.model.User;
+import web.model.UserDTO;
 import web.service.RoleService;
 import web.service.UserService;
 
@@ -54,13 +55,15 @@ public class RESTController {
     }
 
     @PostMapping("/addUser")
-    public ResponseEntity<?> addUser(@RequestBody User user) {
+    public ResponseEntity<?> addUser(@RequestBody UserDTO userDTO) {
+        User user = new User(userDTO);
         userService.add(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/editUser")
-    public ResponseEntity<?> editUser(@RequestBody User user) {
+    public ResponseEntity<?> editUser(@RequestBody UserDTO userDTO) {
+        User user = new User(userDTO);
         userService.edit(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -5,26 +5,34 @@ function editPost(e) {
 
     let id = document.getElementById("idEdit").value;
     let name = document.getElementById("nameEdit").value;
-    let password = document.getElementById("passwordEdit").value;
     let character = document.getElementById("characterEdit").value;
     let iq = document.getElementById("IQEdit").value;
-    let roles = setRoles(Array.from(document.getElementById("roleEdit").selectedOptions)
-        .map(option => option.value));
+    let password = document.getElementById("passwordEdit").value;
 
+
+    let admin = "";
+    let user = "";
+    if (document.getElementById("editROLE_ADMIN").selected) {
+        admin = "ADMIN";
+    }
+    if (document.getElementById("editROLE_USER").selected) {
+        user = "USER";
+    }
 
     fetch("http://localhost:8088/editUser", {
         method: "PUT",
         headers: {
             "Accept": "application/json, text/plain, */*",
-            "Content-type": "application/json; charset = utf-8"
+            "Content-type":"application/json"
         },
         body: JSON.stringify({
             id: id,
             name: name,
-            password: password,
             character: character,
             iq: iq,
-            roles: [{"id": 2}]
+            password: password,
+            admin: admin,
+            user: user
         })
     }).finally(() => {
         $('#editUser').modal("hide")
@@ -32,27 +40,17 @@ function editPost(e) {
     })
 }
 
-function setRoles(someRoles) {
-    let roles = [];
-    if (someRoles.indexOf("ROLE_USER") >= 0) {
-        roles.push({"id": 2, "roles": "ROLE_USER"});
-    }
-    if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
-        roles.push({"id": 1, "roles": "ROLE_ADMIN"});
-    }
-    return roles;
-}
-
 function inputRolesIntoEdit() {
     fetch("http://localhost:8088/allRoles").then((res) => res.json())
         .then((data) => {
             let output = "";
             data.forEach(function (role) {
-                output += `<option>${role.role}</option>`;
+                output += `<option id="edit${role.role}">${role.role}</option>`;
             });
             document.getElementById("roleEdit").innerHTML = output;
         })
 }
+
 inputRolesIntoEdit()
 
 function modalWindowEdit(id) {

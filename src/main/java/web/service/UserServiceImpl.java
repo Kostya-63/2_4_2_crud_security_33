@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
+import web.model.UserDTO;
 import web.repository.UserRepository;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void edit(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-            if(user.getPassword().equals("")){
+            if(user.getPassword().equals("") || user.getPassword() == null){
                 User userForPass = userRepository.findById(user.getId()).get();
                 user.setPassword(userForPass.getPassword());
             }

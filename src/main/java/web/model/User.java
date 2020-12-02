@@ -30,9 +30,6 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Transient
-    private String confirmPassword;
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
@@ -54,6 +51,20 @@ public class User implements UserDetails {
         this.iq = iq;
         this.password = password;
         this.roles = roles;
+    }
+
+    public User(UserDTO userDTO) {
+        this.id = userDTO.getId();
+        this.name = userDTO.getName();
+        this.password = userDTO.getPassword();
+        this.character = userDTO.getCharacter();
+        this.iq = userDTO.getIq();
+        if (userDTO.getAdmin().equals("ADMIN")) {
+            roles.add(new Role(1));
+        }
+        if (userDTO.getUser().equals("USER")) {
+            roles.add(new Role(2));
+        }
     }
 
     public int getId() {
@@ -90,14 +101,6 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
     public Set<Role> getRolesSet() {

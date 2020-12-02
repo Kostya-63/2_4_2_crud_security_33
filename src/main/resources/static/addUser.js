@@ -1,26 +1,27 @@
 document.getElementById("newUser").addEventListener("submit", addNewUser);
 
-function addNewUser(e){
+function addNewUser(e) {
     e.preventDefault();
 
     let name = document.getElementById("name").value;
-    let password = document.getElementById("password").value;
     let character = document.getElementById("character").value;
     let iq = document.getElementById("iq").value;
+    let password = document.getElementById("password").value;
 
-    let roles = null;
-
+    let admin = "";
+    let user = "";
     if (document.getElementById("ROLE_ADMIN").selected) {
-        roles += 1;
+        admin = "ADMIN";
     }
     if (document.getElementById("ROLE_USER").selected) {
-        roles += 2;
+        user = "USER";
     }
 
     fetch("http://localhost:8088/addUser", {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            "Accept": "application/json, text/plain, */*",
+            "Content-type": "application/json"
         },
         body: JSON.stringify({
             id: null,
@@ -28,7 +29,8 @@ function addNewUser(e){
             password: password,
             character: character,
             iq: iq,
-            roles: roles
+            admin: admin,
+            user: user
         })
     })
         .finally(() => {
@@ -48,4 +50,5 @@ function inputRolesIntoAdd() {
             document.getElementById("roles").innerHTML = output;
         })
 }
+
 inputRolesIntoAdd()
