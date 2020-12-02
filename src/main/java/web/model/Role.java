@@ -29,15 +29,6 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public Role(String role) {
-//        if (role.equals("ROLE_ADMIN")) {
-//            this.id = 1;
-//        } else if (role.equals("ROLE_USER")) {
-//            this.id = 2;
-//        }
-        this.role = role;
-    }
-
     @Transient
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
