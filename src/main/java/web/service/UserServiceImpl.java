@@ -34,11 +34,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void edit(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-            if(user.getPassword().equals("") || user.getPassword() == null){
-                User userForPass = userRepository.findById(user.getId()).get();
-                user.setPassword(userForPass.getPassword());
-            }
+        if (user.getPassword() == null || user.getPassword().equals("")) {
+            user.setPassword(userRepository.findById(user.getId()).get().getPassword());
+        } else {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         userRepository.saveAndFlush(user);
     }
 
