@@ -10,7 +10,6 @@ function editPost(e) {
     let password = document.getElementById("passwordEdit").value;
     let roles = setRoles(Array.from(document.getElementById("roleEdit").selectedOptions).map(option => option.value));
 
-
     fetch("http://localhost:8088/editUser", {
         method: "PUT",
         headers: {
@@ -28,18 +27,8 @@ function editPost(e) {
     }).finally(() => {
         $('#editUser').modal("hide")
         getUsers();
+        getUser();
     })
-}
-
-function setRoles(someRoles) {
-    let roles = [];
-    if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
-        roles.push({"role": "ROLE_ADMIN"});
-    }
-    if (someRoles.indexOf("ROLE_USER") >= 0) {
-        roles.push({"role": "ROLE_USER"});
-    }
-    return roles;
 }
 
 function inputRolesIntoEdit() {

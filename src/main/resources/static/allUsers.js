@@ -33,7 +33,7 @@ function getUsers() {
             document.getElementById("allUsers").innerHTML = output;
         })
 }
-getHeader()
+getUser()
 getUsers()
 
 

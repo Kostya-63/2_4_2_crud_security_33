@@ -20,17 +20,21 @@ function getUser() {
             output += "<tr>";
 
             document.getElementById("getUser").innerHTML = output;
+
+            let output2 = "";
+            output2 += `${user.name}  with roles: ${user.roles}`;
+            document.getElementById("header").innerHTML = output2;
         })
 }
-
-function getHeader() {
-    fetch(url).then((res) => res.json())
-        .then((user) => {
-            let output = "";
-            output += `${user.name}  with roles: ${user.roles}`;
-            document.getElementById("header").innerHTML = output;
-        })
-}
-
-getHeader()
+//
+// function getHeader() {
+//     fetch(url).then((res) => res.json())
+//         .then((user) => {
+//             let output2 = "";
+//             output2 += `${user.name}  with roles: ${user.roles}`;
+//             document.getElementById("header").innerHTML = output;
+//         })
+// }
+//
+// getHeader()
 getUser()
