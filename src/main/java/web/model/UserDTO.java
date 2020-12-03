@@ -1,5 +1,7 @@
 package web.model;
 
+import java.util.Set;
+
 public class UserDTO {
 
     private int id;
@@ -12,18 +14,14 @@ public class UserDTO {
 
     private int iq;
 
-    private String admin;
+    private Set<Role> roles;
 
-    private String user;
-
-
-    public UserDTO(String name, String character, int iq, String password, String admin, String user) {
+    public UserDTO(String name, String character, int iq, String password, String admin, String user, Set<Role> roles) {
         this.name = name;
         this.character = character;
         this.iq = iq;
         this.password = password;
-        this.admin = admin;
-        this.user = user;
+        this.roles = roles;
     }
 
     public UserDTO() {
@@ -49,11 +47,7 @@ public class UserDTO {
         return iq;
     }
 
-    public String getAdmin() {
-        return admin;
-    }
-
-    public String getUser() {
-        return user;
+    public Set<Role> getRoles() {
+        return roles;
     }
 }

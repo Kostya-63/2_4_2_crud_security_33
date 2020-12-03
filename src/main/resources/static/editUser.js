@@ -8,22 +8,14 @@ function editPost(e) {
     let character = document.getElementById("characterEdit").value;
     let iq = document.getElementById("IQEdit").value;
     let password = document.getElementById("passwordEdit").value;
+    let roles = setRoles(Array.from(document.getElementById("roleEdit").selectedOptions).map(option => option.value));
 
-
-    let admin = "";
-    let user = "";
-    if (document.getElementById("editROLE_ADMIN").selected) {
-        admin = "ADMIN";
-    }
-    if (document.getElementById("editROLE_USER").selected) {
-        user = "USER";
-    }
 
     fetch("http://localhost:8088/editUser", {
         method: "PUT",
         headers: {
             "Accept": "application/json, text/plain, */*",
-            "Content-type":"application/json"
+            "Content-type": "application/json"
         },
         body: JSON.stringify({
             id: id,
@@ -31,13 +23,23 @@ function editPost(e) {
             character: character,
             iq: iq,
             password: password,
-            admin: admin,
-            user: user
+            roles: roles
         })
     }).finally(() => {
         $('#editUser').modal("hide")
         getUsers();
     })
+}
+
+function setRoles(someRoles) {
+    let roles = [];
+    if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
+        roles.push({"id": 1});
+    }
+    if (someRoles.indexOf("ROLE_USER") >= 0) {
+        roles.push({"id": 2});
+    }
+    return roles;
 }
 
 function inputRolesIntoEdit() {

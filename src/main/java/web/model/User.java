@@ -59,12 +59,7 @@ public class User implements UserDetails {
         this.password = userDTO.getPassword();
         this.character = userDTO.getCharacter();
         this.iq = userDTO.getIq();
-        if (userDTO.getAdmin().equals("ADMIN")) {
-            roles.add(new Role(1));
-        }
-        if (userDTO.getUser().equals("USER")) {
-            roles.add(new Role(2));
-        }
+        this.roles = userDTO.getRoles();
     }
 
     public int getId() {

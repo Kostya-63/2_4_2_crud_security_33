@@ -7,15 +7,7 @@ function addNewUser(e) {
     let character = document.getElementById("character").value;
     let iq = document.getElementById("iq").value;
     let password = document.getElementById("password").value;
-
-    let admin = "";
-    let user = "";
-    if (document.getElementById("ROLE_ADMIN").selected) {
-        admin = "ADMIN";
-    }
-    if (document.getElementById("ROLE_USER").selected) {
-        user = "USER";
-    }
+    let roles = setRoles(Array.from(document.getElementById("roles").selectedOptions).map(option => option.value));
 
     fetch("http://localhost:8088/addUser", {
         method: 'POST',
@@ -29,8 +21,7 @@ function addNewUser(e) {
             password: password,
             character: character,
             iq: iq,
-            admin: admin,
-            user: user
+            roles: roles
         })
     })
         .finally(() => {
@@ -38,6 +29,17 @@ function addNewUser(e) {
             getUsers();
             document.getElementById("addUser").reset();
         })
+}
+
+function setRoles(someRoles) {
+    let roles = [];
+    if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
+        roles.push({"id": 1});
+    }
+    if (someRoles.indexOf("ROLE_USER") >= 0) {
+        roles.push({"id": 2});
+    }
+    return roles;
 }
 
 function inputRolesIntoAdd() {
