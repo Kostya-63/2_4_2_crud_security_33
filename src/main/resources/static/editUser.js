@@ -34,10 +34,10 @@ function editPost(e) {
 function setRoles(someRoles) {
     let roles = [];
     if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
-        roles.push({"id": 1});
+        roles.push({"role": "ROLE_ADMIN"});
     }
     if (someRoles.indexOf("ROLE_USER") >= 0) {
-        roles.push({"id": 2});
+        roles.push({"role": "ROLE_USER"});
     }
     return roles;
 }
