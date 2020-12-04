@@ -26,8 +26,8 @@ function editPost(e) {
         })
     }).finally(() => {
         inputUserAfterEdit(name);
+        $('#editUser').modal("hide");
         getUser();
-        $('#editUser').modal("hide")
     })
 
 }
