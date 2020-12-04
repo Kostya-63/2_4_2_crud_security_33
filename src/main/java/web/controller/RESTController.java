@@ -74,9 +74,9 @@ public class RESTController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/getUser/{id}")
-    public User getById(@PathVariable(name = "id") int id) {
-        return userService.getById(id);
+    @GetMapping("/getUser/{name}")
+    public User getById(@PathVariable(name = "name") String name) {
+        return userService.getUserByName(name);
     }
 
     @GetMapping("/allRoles")

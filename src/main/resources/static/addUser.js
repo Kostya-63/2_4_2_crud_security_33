@@ -25,10 +25,11 @@ function addNewUser(e) {
         })
     })
         .finally(() => {
+            inputUserAfterAdd(name);
             document.getElementById("allUsersTable").click();
-            getUsers();
             document.getElementById("addUser").reset();
         })
+
 }
 
 function inputRolesIntoAdd() {
