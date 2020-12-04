@@ -10,6 +10,8 @@ function editPost(e) {
     let password = document.getElementById("passwordEdit").value;
     let roles = setRoles(Array.from(document.getElementById("roleEdit").selectedOptions).map(option => option.value));
 
+    let editedUser = "";
+
     fetch("http://localhost:8088/editUser", {
         method: "PUT",
         headers: {
@@ -25,9 +27,9 @@ function editPost(e) {
             roles: roles
         })
     }).finally(() => {
-        $('#editUser').modal("hide")
-        getUsers();
+        inputUserAfterEdit(id);
         getUser();
+        $('#editUser').modal("hide")
     })
 }
 

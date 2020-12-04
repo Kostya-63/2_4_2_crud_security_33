@@ -23,9 +23,9 @@ function deletePost(e) {
             iq: iq
         })
     }).finally(() => {
+        document.getElementById(id).remove()
         $('#deleteUser').modal("hide")
         getHeader()
-        getUsers()
     });
 
     function setRoles(someRoles) {

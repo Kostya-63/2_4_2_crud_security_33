@@ -58,7 +58,7 @@ public class RESTController {
     public ResponseEntity<?> addUser(@RequestBody UserDTO userDTO) {
         User user = new User(userDTO);
         userService.add(user);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userDTO);
     }
 
     @PutMapping("/editUser")

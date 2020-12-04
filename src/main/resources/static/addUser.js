@@ -31,17 +31,6 @@ function addNewUser(e) {
         })
 }
 
-function setRoles(someRoles) {
-    let roles = [];
-    if (someRoles.indexOf("ROLE_ADMIN") >= 0) {
-        roles.push({"id": 1});
-    }
-    if (someRoles.indexOf("ROLE_USER") >= 0) {
-        roles.push({"id": 2});
-    }
-    return roles;
-}
-
 function inputRolesIntoAdd() {
     fetch("http://localhost:8088/allRoles").then((res) => res.json())
         .then((data) => {
@@ -54,3 +43,4 @@ function inputRolesIntoAdd() {
 }
 
 inputRolesIntoAdd()
+

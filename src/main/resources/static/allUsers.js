@@ -6,12 +6,12 @@ function getUsers() {
             data.forEach(function (user) {
 
                 let userRoles = "";
-                for (let i = 0; i < user.rolesSet.length; i++){
-                    userRoles+=`${user.rolesSet[i].role} `
+                for (let i = 0; i < user.rolesSet.length; i++) {
+                    userRoles += `${user.rolesSet[i].role} `
                 }
 
                 output += `
-                <tr>
+                <tr id="${user.id}">
                 <td class="p-2" id="id${user.id}">${user.id}</td>
                 <td class="p-2" id="name${user.id}">${user.name}</td> 
                 <td class="p-2" id="character${user.id}">${user.character}</td>
@@ -33,6 +33,7 @@ function getUsers() {
             document.getElementById("allUsers").innerHTML = output;
         })
 }
+
 getUser()
 getUsers()
 
