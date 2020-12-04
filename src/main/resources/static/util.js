@@ -38,7 +38,7 @@ function inputUserAfterAdd(name) {
                     </td>
                 </tr>`
             ;
-            document.getElementById("allUsers").innerHTML = output;
+            $('#allUsers').append(output);
         })
 }
 
