@@ -29,7 +29,6 @@ function editPost(e) {
         $('#editUser').modal("hide");
         getUser();
     })
-
 }
 
 function inputRolesIntoEdit() {

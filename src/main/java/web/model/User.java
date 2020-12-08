@@ -2,6 +2,7 @@ package web.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import web.model.dto.UserDTO;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -59,7 +60,7 @@ public class User implements UserDetails {
         this.password = userDTO.getPassword();
         this.character = userDTO.getCharacter();
         this.iq = userDTO.getIq();
-        this.roles = userDTO.getRoles();
+        this.roles = new HashSet<Role>(userDTO.getRoles());
     }
 
     public int getId() {

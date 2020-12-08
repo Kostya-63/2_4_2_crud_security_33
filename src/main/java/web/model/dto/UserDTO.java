@@ -1,4 +1,6 @@
-package web.model;
+package web.model.dto;
+
+import web.model.Role;
 
 import java.util.Set;
 
@@ -49,5 +51,29 @@ public class UserDTO {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
+    public void setIq(int iq) {
+        this.iq = iq;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

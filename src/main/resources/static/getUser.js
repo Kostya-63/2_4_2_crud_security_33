@@ -2,8 +2,7 @@ const url = "http://localhost:8088/getUser"
 
 function getUser() {
 
-    fetch(url).then((res) => res.json())
-        .then((user) => {
+    fetch(url).then((res) => res.json()).then((user) => {
             let userRoles = "";
             let output3 = "";
             let output4 = "";
@@ -28,11 +27,11 @@ function getUser() {
             if (userRoles.includes("ROLE_USER") && userRoles === "ROLE_USER ") {
                 output3 =
                     `<li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#userAdmin" id="clickWhenRoleUser">User</a>
+                        <a class="nav-link active" data-toggle="tab" href="#user" id="clickWhenRoleUser">User</a>
                     </li>`
                 ;
                 output4 =
-                    `<div class="tab-pane fade show active" id="userAdmin">
+                    `<div class="tab-pane fade show active" id="user">
                         <h2 class="text-left">User information page</h2>
                         <div class="card">
                             <div class="card-header font-weight-bolder">
@@ -69,6 +68,7 @@ function getUser() {
 
             let output2 = "";
             output2 += `${user.name}  with roles: ${user.roles}`;
+
             document.getElementById("header").innerHTML = output2;
             document.getElementById("tabsAdminUser").innerHTML = output3;
             if (userRoles === "ROLE_USER ") {

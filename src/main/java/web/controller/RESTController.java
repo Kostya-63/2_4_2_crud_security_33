@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import web.model.Role;
 import web.model.User;
-import web.model.UserDTO;
+import web.model.dto.UserDTO;
 import web.service.RoleService;
 import web.service.UserService;
 
